@@ -8,7 +8,6 @@
     --transition-speed: 0.3s ease;
 }
 
-/* General Page Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -59,7 +58,6 @@ body {
     background: rgba(255, 255, 255, 0.2);
 }
 
-/* Common Section Styles */
 .section {
     background: linear-gradient(to bottom right, var(--white), #f8f8f8);
     margin: 80px auto 20px;
