@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lovepreet Sidhu - Resume</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="navbar__list">
+            <li><a href="#header" class="navbar__link">Home</a></li>
+            <li><a href="#summary" class="navbar__link">Summary</a></li>
+            <li><a href="#skills" class="navbar__link">Skills</a></li>
+            <li><a href="#education" class="navbar__link">Education</a></li>
+            <li><a href="#projects" class="navbar__link">Projects</a></li>
+            <li><a href="#experience" class="navbar__link">Experience</a></li>
+            <li><a href="#feedback" class="navbar__link">Feedback</a></li>
+        </ul>
+    </nav>
+    
+    <div id="header" class="section header">
+        <h1 class="header__title">Lovepreet Sidhu</h1>
+        <p>Surrey, BC</p>
+        <p>778-878-4128</p>
+        <p>GitHub: <a href="https://github.com/lovesidhuy" target="_blank">@lovesidhuy</a></p>
+        <p>Email: <a href="mailto:lovepreet.sidhu3@student.kpu.ca">lovepreet.sidhu3@student.kpu.ca</a></p>
+        <p><a href="resume.pdf" download>Download Resume</a></p>
+    </div>
+    
+    <div id="summary" class="section">
+        <h2>Summary of Qualifications</h2>
+        <ul>
+            <li>Third-year Bachelor of Technology in Information Technology student at Kwantlen Polytechnic University.</li>
+            <li>3+ years of customer service and sales experience in technology retail.</li>
+            <li>Skills in hardware repair, OS troubleshooting, and network support.</li>
+            <li>Proficient in diagnosing and repairing desktops/laptops, configuring OS (Windows, macOS, Linux), and troubleshooting software/hardware issues.</li>
+            <li>Strong communication skills, simplifying technical concepts for end-users.</li>
+        </ul>
+    </div>
+    
+    <div id="skills" class="section">
+        <h2>Skills</h2>
+        <ul class="skills__list">
+            <li class="skills__item"><strong>Operating Systems:</strong> Windows 7/10/11, Windows Server, Linux, macOS</li>
+            <li class="skills__item"><strong>Networking:</strong> TCP/IP, VLANs, DHCP, OSPFv2, ACLs, Ethernet, Cisco Packet Tracer</li>
+            <li class="skills__item"><strong>Tools:</strong> Active Directory, Microsoft 365, AWS Cloud, Remote Desktop</li>
+            <li class="skills__item"><strong>Hardware:</strong> Desktop/laptop repair, printer/peripheral setup</li>
+            <li class="skills__item"><strong>Software:</strong> Microsoft Office Suite, SQL, MySQL, Bash, Python, Java, HTML/CSS, JavaScript</li>
+            <li class="skills__item"><strong>Certifications:</strong> AWS Certified Cloud Practitioner (Feb 2024), AWS Certified Solutions Architect – Associate (Nov 2024)</li>
+        </ul>
+    </div>
+    
+    <div id="education" class="section">
+        <h2>Education</h2>
+        <p class="education__details">Kwantlen Polytechnic University | Bachelor of Technology – BTech: Information Technology (May 2022 - May 2026 Expected)</p>
+        <p><strong>Relevant Coursework:</strong> Networking, Database Systems, Server Operating Systems, IT Infrastructure Design</p>
+    </div>
+    
+    <div id="projects" class="section">
+        <h2>Projects</h2>
+        <div class="projects__item">
+            <h3>Tournament Management Database - December 2024</h3>
+            <ul>
+                <li>Designed and developed a MySQL database for mapping NFL tournament data.</li>
+                <li>Implemented an ER model to define entities and relationships.</li>
+                <li>Developed SQL queries for match trackings, fan statistics and revenue alaysis.</li>
+            </ul>
+        </div>
+        <div class="projects__item">
+            <h3>Network Design and Implementation - December 2024</h3>
+            <ul>
+                <li>Completed hands-on labs in Cisco Packet Tracer.</li>
+                <li>Configured Single-Area OSPFv2, ACLs, NAT, and VPNs.</li>
+            </ul>
+        </div>
+        <div class="projects__item">
+            <h3>Active Directory & Infrastructure Design - January 2023</h3>
+            <ul>
+                <li>Hands-on experience with system configurations including IIS, DNS, and Group Policy.</li>
+                <li>Compiled cost estimates for hardware, software, and licensing.</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="experience" class="section">
+        <h2>Experience</h2>
+        <div class="experience__item">
+            <h3>Porter | Vancouver Coastal Health – Vancouver General Hospital (Oct 2022 – Present)</h3>
+            <ul>
+                <li>Provide client-centered support in a fast-paced healthcare environment.</li>
+                <li>Demonstrate strong communication and attention to detail.</li>
+            </ul>
+        </div>
+        <div class="experience__item">
+            <h3>Delivery Driver | UPS – Delta, BC (Oct 2021 – Dec 2021)</h3>
+            <ul>
+                <li>Managed delivery routes and maintained safety standards.</li>
+                <li>Met strict delivery deadlines while ensuring customer satisfaction.</li>
+            </ul>
+        </div>
+        <div class="experience__item">
+            <h3>Sales Representative | Bell - FLTC, Surrey, BC (Apr 2018 – Aug 2021)</h3>
+            <ul>
+                <li>Exceeded sales quotas by 15% on average.</li>
+                <li>Trained customers on device setup and troubleshooting.</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="feedback" class="section">
+        <h2>Feedback Form</h2>
+        <form class="feedback__form" action="#" method="post">
+            <label class="feedback__label" for="name">Name:</label>
+            <input class="feedback__input" type="text" id="name" name="name" required>
+            
+            <label class="feedback__label" for="email">Email:</label>
+            <input class="feedback__input" type="email" id="email" name="email" required>
+            
+            <label class="feedback__label" for="message">Message:</label>
+            <textarea class="feedback__textarea" id="message" name="message" rows="4" required></textarea>
+            
+            <button class="feedback__button" type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
