@@ -1,1 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lovepreet Sidhu – IT Professional Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            background: #003366;
+            padding: 15px 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar__list {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar__link {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+        }
+        .navbar__link:hover {
+            background: #0066cc;
+        }
+        .section {
+            background: white;
+            margin: 80px auto 30px;
+            padding: 30px;
+            max-width: 900px;
+            border: 1px solid #ddd;
+        }
+        .header {
+            text-align: center;
+            background: #f8f9fa;
+            border: 2px solid #003366;
+        }
+        h1 {
+            color: #003366;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #003366;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        h3 {
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+        ul {
+            margin: 10px 0 10px 20px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .project, .role {
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 3px solid #0066cc;
+        }
+        .project__meta, .role__meta {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="navbar__list">
+            <li><a href="#header" class="navbar__link">Home</a></li>
+            <li><a href="#summary" class="navbar__link">Summary</a></li>
+            <li><a href="#skills" class="navbar__link">Skills</a></li>
+            <li><a href="#education" class="navbar__link">Education</a></li>
+            <li><a href="#projects" class="navbar__link">Projects</a></li>
+            <li><a href="#volunteer" class="navbar__link">Volunteer</a></li>
+            <li><a href="#experience" class="navbar__link">Experience</a></li>
+            <li><a href="#feedback" class="navbar__link">Feedback</a></li>
+        </ul>
+    </nav>
 
+    <header id="header" class="section header">
+        <h1>Lovepreet Sidhu</h1>
+        <p><strong>Location:</strong> Vancouver, BC</p>
+        <p><strong>GitHub:</strong> <a href="https://github.com/lovesidhuy" target="_blank">@lovesidhuy</a></p>
+        <p><strong>Portfolio:</strong> <a href="https://lovesidhuy.github.io/portfoliowebsite" target="_blank">lovesidhuy.github.io/portfoliowebsite</a></p>
+        <p><a href="lovepreetSidhu_resume(IT).pdf" download>Download Resume (PDF)</a></p>
+    </header>
+
+    <section id="summary" class="section">
+        <h2>Summary of Qualifications</h2>
+        <ul class="summary-list">
+            <li>Fourth-year Information Technology student at Kwantlen Polytechnic University with extensive hands-on experience in system administration, network security, and enterprise infrastructure management.</li>
+            <li>Proficient in Windows Server environments, Active Directory administration, Linux system management, and network security protocols with demonstrated expertise through academic projects and industry certifications.</li>
+            <li>Proven track record in high-pressure customer service environments across healthcare, logistics, and telecommunications sectors, with strong communication and problem-resolution skills.</li>
+        </ul>
+    </section>
+
+    <section id="skills" class="section">
+        <h2>Technical Skills</h2>
+        <p><strong>Systems & Security:</strong> Windows Server 2016/2019, Active Directory, System hardening, VPN configuration, Firewall management, Network monitoring, File integrity monitoring, OSSEC</p>
+        <p><strong>Networking & Infrastructure:</strong> TCP/IP, VLANs, DHCP, OSPF routing, Cisco Packet Tracer, GRE tunnels, Wireless networks, Remote Desktop, User account management</p>
+        <p><strong>Programming & Scripting:</strong> Python, Bash scripting, SQL, MySQL, HTML/CSS, JavaScript, PHP, Java</p>
+        <p><strong>Cloud & Platforms:</strong> Microsoft 365, AWS cloud services, Linux (Ubuntu, Kali), macOS, Virtualization, Ticketing systems</p>
+        <p><strong>Certifications:</strong> AWS Certified Cloud Practitioner (Feb 2024), AWS Certified Solutions Architect – Associate (Nov 2024)</p>
+    </section>
+
+    <section id="education" class="section">
+        <h2>Education</h2>
+        <p><strong>Kwantlen Polytechnic University</strong> — Bachelor of Technology (BTech) in Information Technology, Network Administration and Security | May 2022 – May 2026 (Expected)</p>
+        <p><strong>Relevant Coursework:</strong> Networking Technologies, Wireless Networks, System Security, Database Management, Network Infrastructure Design</p>
+    </section>
+
+    <section id="projects" class="section">
+        <h2>Technical Projects</h2>
+
+        <article class="project">
+            <h3>Online Recruitment System <span class="project__meta">March 2025</span></h3>
+            <ul>
+                <li>Developed a comprehensive PHP and MySQL application using XAMPP to streamline applicant tracking and HR administrative workflows.</li>
+                <li>Integrated AI-driven candidate screening capabilities using OpenAI and LangChain in JavaScript.</li>
+                <li>Implemented secure user authentication and role-based access controls following enterprise security standards.</li>
+            </ul>
+        </article>
+
+        <article class="project">
+            <h3>Enterprise File Integrity Monitoring System <span class="project__meta">March 2025</span></h3>
+            <ul>
+                <li>Implemented a Java-based File Integrity Monitoring system using SHA-256 cryptographic hashing with monitoring via Java API.</li>
+                <li>Deployed and configured OSSEC host-based intrusion detection system on Kali Linux VM to evaluate security monitoring capabilities and compliance readiness.</li>
+                <li>Created comprehensive documentation and user guides explaining security benefits and regulatory compliance considerations for non-technical stakeholders.</li>
+            </ul>
+        </article>
+
+        <article class="project">
+            <h3>Multi-Department Enterprise Network Design <span class="project__meta">December 2024</span></h3>
+            <ul>
+                <li>Architected and implemented a scalable enterprise network infrastructure using Cisco Packet Tracer, incorporating VLANs, OSPF routing, ACLs, and GRE tunnels for secure inter-department connectivity.</li>
+                <li>Designed network segmentation strategy users across multiple departments.</li>
+                <li>Documented network topology, configuration procedures, and troubleshooting guides.</li>
+            </ul>
+        </article>
+    </section>
+
+    <section id="volunteer" class="section">
+        <h2>Volunteer Experience</h2>
+        <div class="role">
+            <h3>Event Support Volunteer <span class="role__meta">Cystic Fibrosis Foundation – Burnaby, BC | May 2025 | 8 hours</span></h3>
+            <ul>
+                <li>Provided logistical support for community fundraising event serving participants.</li>
+                <li>Assisted with participant registration and route coordination.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <h2>Professional Experience</h2>
+
+        <article class="role">
+            <h3>Porter <span class="role__meta">Vancouver Coastal Health | October 2022 – Present </span></h3>
+            <ul>
+                <li>Coordinate with multidisciplinary healthcare teams to prioritize patient transfers, contributing to improved patient flow efficiency.</li>
+                <li>Demonstrate reliability and professionalism in high-stress healthcare environment requiring attention to detail and clear communication.</li>
+            </ul>
+        </article>
+
+        <article class="role">
+            <h3>Delivery Driver <span class="role__meta">United Parcel Service Canada – Delta, BC | October 2021 – February 2022 </span></h3>
+            <ul>
+                <li>Executed delivery of packages with accuracy using UPS logistics systems and real-time tracking technology.</li>
+                <li>Optimized delivery routes and adapted workflows to meet time-sensitive delivery commitments, achieving improvement in route efficiency.</li>
+                <li>Demonstrated ability to work independently while maintaining consistent performance standards under pressure.</li>
+            </ul>
+        </article>
+
+        <article class="role">
+            <h3>Sales Representative <span class="role__meta">BELL – FLTC (Authorized Dealer), Surrey, BC | April 2018 – August 2021 |</span></h3>
+            <ul>
+                <li>Consistently exceeded monthly sales targets by 15% through strategic customer consultations and technical product recommendations.</li>
+                <li>Provided comprehensive technical support including device configuration, troubleshooting, and software updates, reducing customer service escalations by 20%.</li>
+                <li>Managed high-volume sales transactions and inventory control in fast-paced retail environment, maintaining accuracy in order processing.</li>
+            </ul>
+        </article>
+
+        <article class="role">
+            <h3>Field Sales Representative <span class="role__meta">The Acquisition Group - TELUS (Authorized Dealer), Surrey, BC | April 2017 – March 2018 </span></h3>
+            <ul>
+                <li>Achieved top performance metrics in direct sales and event-based marketing, winning multiple TELUS/Koodo regional competitions.</li>
+                <li>Educated customers on fiber optic technology upgrades and provided technical recommendations for TV, internet, and smart home solutions.</li>
+            </ul>
+        </article>
+    </section>
+
+    <section id="feedback" class="section feedback-section">
+        <h2>Professional Feedback</h2>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdmDky5U2x6d6GEm9BZPU7X84JdWNjYzg8vrVIQp1-vGH7C1A/viewform?usp=dialog" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </section>
+
+</body>
+</html>
