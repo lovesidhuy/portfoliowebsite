@@ -37,6 +37,21 @@
         .navbar__link:hover {
             background: #0066cc;
         }
+        @media (max-height: 500px), (pointer: coarse) {
+        .navbar {
+            overflow-y: auto;
+            max-height: 100vh;
+            -webkit-overflow-scrolling: touch;
+          }
+        .navbar::-webkit-scrollbar {
+            width: 0;
+            background: transparent;
+          }
+        .navbar {
+            scrollbar-width: none; 
+          }
+        }
+
         .section {
             background: white;
             margin: 80px auto 30px;
