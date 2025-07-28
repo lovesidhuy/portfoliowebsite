@@ -20,6 +20,9 @@
             padding: 15px 0;
             width: 100%;
             z-index: 1000;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
         }
         .navbar__list {
             list-style: none;
@@ -27,29 +30,50 @@
             justify-content: center;
             gap: 30px;
             margin: 0;
-            padding: 0;
+            padding: 0 20px;
+            min-width: max-content;
         }
         .navbar__link {
             color: white;
             text-decoration: none;
             padding: 10px 15px;
+            display: block;
+            white-space: nowrap;
         }
         .navbar__link:hover {
             background: #0066cc;
         }
-        @media (max-height: 500px), (pointer: coarse) {
-        .navbar {
-            overflow-y: auto;
-            max-height: 100vh;
-            -webkit-overflow-scrolling: touch;
-          }
+        
         .navbar::-webkit-scrollbar {
-            width: 0;
+            height: 0;
             background: transparent;
-          }
+        }
         .navbar {
-            scrollbar-width: none; 
-          }
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar__list {
+                justify-content: flex-start;
+                gap: 20px;
+                padding: 0 15px;
+            }
+            .navbar__link {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .navbar__list {
+                gap: 15px;
+                padding: 0 10px;
+            }
+            .navbar__link {
+                padding: 8px 10px;
+                font-size: 13px;
+            }
         }
 
         .section {
@@ -100,6 +124,19 @@
         .project__meta, .role__meta {
             color: #666;
             font-size: 0.9em;
+        }
+        
+        @media (pointer: coarse) {
+            .navbar::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                width: 20px;
+                background: linear-gradient(to right, transparent, rgba(0,51,102,0.3));
+                pointer-events: none;
+            }
         }
     </style>
 </head>
