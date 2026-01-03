@@ -7,7 +7,6 @@ import ErrorBoundary from './components/ErrorBoundary';
 const PanelHeading = lazy(() => import('./components/PanelHeading'));
 const SkillPanel = lazy(() => import('./components/SkillPanel'));
 const ProjectPanel = lazy(() => import('./components/ProjectPanel'));
-const ExperiencePanel = lazy(() => import('./components/ExperiencePanel'));
 
 // Loading component for Suspense fallback
 const LoadingSpinner = () => (
@@ -18,7 +17,7 @@ const LoadingSpinner = () => (
 
 function App() {
   const [navOpen, setNavOpen] = useState(false);
-  const { personal, summary, skills, projects, experience, education, certifications, volunteer } =
+  const { personal, summary, skills, projects } =
     portfolioData;
 
   return (
@@ -31,7 +30,7 @@ function App() {
             <span className="kochi-brand__icon" aria-hidden="true">
               LS
             </span>
-            <span className="kochi-brand__title">Lovepreet Sidhu</span>
+            <span className="kochi-brand__title">{personal.name}</span>
             <span className="kochi-brand__role">Network Admin &amp; Security</span>
           </a>
 
@@ -57,10 +56,7 @@ function App() {
                 <a href="#projects">Projects</a>
               </li>
               <li>
-                <a href="#experience">Experience</a>
-              </li>
-              <li>
-                <a href="#education">Education</a>
+                <a href={personal.github} target="_blank" rel="noreferrer">GitHub</a>
               </li>
               <li>
                 <a href="#contact">Contact</a>
@@ -107,15 +103,6 @@ function App() {
                   <span>GitHub</span>
                   <i className="fab fa-github" aria-hidden="true" />
                 </a>
-                <a
-                  href={personal.resume}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="kochi-button kochi-button--outline"
-                >
-                  <span>View resume</span>
-                  <i className="fas fa-file-alt" aria-hidden="true" />
-                </a>
               </div>
             </div>
 
@@ -127,24 +114,9 @@ function App() {
                     <dt>Focus</dt>
                     <dd>Networking &amp; security</dd>
                   </div>
-                  <div>
-                    <dt>Program</dt>
-                    <dd>Info Tech, KPU</dd>
-                  </div>
-                  <div>
-                    <dt>Grad</dt>
-                    <dd>May 2026 (expected)</dd>
-                  </div>
                 </dl>
               </section>
 
-              <section className="hero-sidebar__card">
-                <h2>Recent Achievements</h2>
-                <div className="hero-sidebar__badge">
-                  <span>AWS Solutions Architect - Associate</span>
-                  <time>Nov 2024</time>
-                </div>
-              </section>
             </aside>
           </div>
         </section>
@@ -197,75 +169,6 @@ function App() {
           </div>
         </section>
 
-        <section
-          id="experience"
-          className="panel"
-          aria-labelledby="experience-title"
-          style={{ animationDelay: '0.7s' }}
-        >
-          <Suspense fallback={<LoadingSpinner />}>
-            <PanelHeading
-              title="Work Experience"
-              blurb="Roles that have shaped my technical skills and problem-solving abilities."
-              lineProgress={0.7}
-            />
-          </Suspense>
-          <div className="panel__content experience-grid">
-            {experience.map((item, index) => (
-              <Suspense key={item.company + index} fallback={<LoadingSpinner />}>
-                <ExperiencePanel item={item} index={index} />
-              </Suspense>
-            ))}
-          </div>
-        </section>
-
-        <section
-          id="education"
-          className="panel"
-          aria-labelledby="education-title"
-          style={{ animationDelay: '0.9s' }}
-        >
-          <PanelHeading
-            title="Education & Credentials"
-            lineProgress={0.9}
-          />
-          <div className="panel__content education-grid">
-            <article className="education-panel">
-              <header>
-                <h3>{education.degree}</h3>
-                <p className="education-panel__school">{education.school}</p>
-                <p className="education-panel__period">{education.period}</p>
-              </header>
-              <p className="education-panel__focus">{education.specialization}</p>
-              <ul className="education-panel__tags">
-                {education.tags.map((tag) => (
-                  <li key={tag}>{tag}</li>
-                ))}
-              </ul>
-            </article>
-
-            <article className="credential-panel">
-              <h3>Certifications</h3>
-              <ul>
-                {certifications.map((cert) => (
-                  <li key={cert.name}>
-                    <span>{cert.name}</span>
-                    <time>{cert.date}</time>
-                  </li>
-                ))}
-              </ul>
-            </article>
-
-            <article className="volunteer-panel">
-              <h3>Volunteer</h3>
-              <p className="volunteer-panel__title">{volunteer.title}</p>
-              <p className="volunteer-panel__org">{volunteer.org}</p>
-              <p className="volunteer-panel__period">{volunteer.period}</p>
-              <p>{volunteer.desc}</p>
-            </article>
-          </div>
-        </section>
-
         <section className="panel panel--closing" aria-labelledby="closing-title" style={{ animationDelay: '1.1s' }}>
           <div className="panel__content closing-card">
             <p className="closing-card__overline">Let's connect</p>
@@ -299,7 +202,7 @@ function App() {
       <footer id="contact" className="kochi-footer" aria-label="Footer">
         <div className="kochi-footer__inner">
           <div>
-            <span className="kochi-footer__title">Lovepreet Sidhu</span>
+            <span className="kochi-footer__title">{personal.name}</span>
             <span className="kochi-footer__subtitle">Network admin &amp; security</span>
           </div>
           <ul>
@@ -309,11 +212,6 @@ function App() {
             <li>
               <a href={personal.github} target="_blank" rel="noreferrer">
                 GitHub
-              </a>
-            </li>
-            <li>
-              <a href={personal.resume} target="_blank" rel="noreferrer">
-                Resume
               </a>
             </li>
           </ul>

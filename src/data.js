@@ -3,12 +3,11 @@ export const portfolioData = {
     name: "Lovepreet Sidhu",
     role: "Network Admin & Security",
     email: "lovepreet.sidhu3@student.kpu.ca",
-    github: "https://github.com/lovesidhuy",
-    resume: "https://github.com/lovesidhuy/portfoliowebsite/blob/main/coopls.pdf"
+    github: "https://github.com/lovesidhuy"
   },
 
   summary: [
-    { label: "4th-Year IT Student", text: "Specializing in Network Administration & Security at KPU, graduating May 2026." },
+    { label: "4th-Year IT Student", text: "Specializing in Network Administration & Security, graduating May 2026." },
     { label: "Expertise in Networking & Security", text: "Proficient in TCP/IP, VLANs, firewalls, VPNs, and cloud security with AWS." },
     { label: "Hands-On Problem Solver", text: "Experience in system hardening, FIM, and real-world troubleshooting in fast-paced environments." },
     { label: "Eager to Contribute", text: "Seeking co-op or roles in IT security and infrastructure." }
@@ -91,72 +90,5 @@ export const portfolioData = {
       ],
       link: "https://github.com/lovesidhuy/Sorting-Agorithms-Visualizer"
     }
-  ],
-
-  experience: [
-    {
-      title: "Porter",
-      icon: "fa-hospital",
-      company: "Vancouver Coastal Health",
-      period: "Oct 2022 - Present",
-      category: "healthcare",
-      bullets: [
-        "Facilitated patient transport and equipment management in high-volume settings.",
-        "Maintained clear communication with medical staff to prioritize urgent requests."
-      ]
-    },
-    {
-      title: "Delivery Driver",
-      icon: "fa-truck",
-      company: "UPS (Delta, BC)",
-      period: "Oct 2021 - Feb 2022",
-      category: "logistics",
-      bullets: [
-        "Executed time-sensitive deliveries using logistics software.",
-        "Optimized delivery routes independently for efficiency."
-      ]
-    },
-    {
-      title: "Sales Representative",
-      icon: "fa-mobile-alt",
-      company: "BELL (Authorized Dealer)",
-      period: "Apr 2018 - Aug 2021",
-      category: "technical",
-      bullets: [
-        "Assisted customers with mobile device setup, software troubleshooting, and 5G plans.",
-        "Resolved technical inquiries regarding hardware specs and connectivity."
-      ]
-    },
-    {
-      title: "Field Sales Rep",
-      icon: "fa-network-wired",
-      company: "TELUS (Authorized Dealer)",
-      period: "Apr 2017 - Mar 2018",
-      category: "technical",
-      bullets: [
-        "Advised customers on fiber network upgrades and provided setup support.",
-        "Simplified technical concepts for non-technical users."
-      ]
-    }
-  ],
-
-  education: {
-    degree: "B.Tech: Information Technology",
-    school: "Kwantlen Polytechnic University",
-    period: "May 2022 - May 2026 (Expected)",
-    specialization: "Network Administration and Security",
-    tags: ["Wireless Security", "IoT", "System Development"]
-  },
-
-  certifications: [
-    { name: "AWS Solutions Architect - Associate", date: "Nov 2024" },
-    { name: "AWS Cloud Practitioner", date: "Feb 2024" }
-  ],
-
-  volunteer: {
-    title: "Event Support Volunteer",
-    org: "Cystic Fibrosis Foundation",
-    period: "May 2025",
-    desc: "Supported logistics coordination and participant assistance to raise awareness and funds."
-  }
+  ]
 };
