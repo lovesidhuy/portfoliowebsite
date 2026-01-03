@@ -74,19 +74,12 @@ function App() {
         <section id="about" className="panel panel--hero" aria-labelledby="hero-title" style={{ animationDelay: '0.1s' }}>
           <div className="panel__content hero-grid">
             <div className="hero-main">
-              <p className="hero-main__overline">Surrey, BC</p>
               <h1 id="hero-title" className="hero-main__title">
                 {personal.name}
               </h1>
               <p className="hero-main__subtitle">{personal.role}</p>
 
               <div className="hero-main__contacts">
-                <span>
-                  <i className="fas fa-map-marker-alt" aria-hidden="true" /> {personal.location}
-                </span>
-                <span>
-                  <i className="fas fa-phone-alt" aria-hidden="true" /> {personal.phone}
-                </span>
                 <span>
                   <i className="fas fa-envelope" aria-hidden="true" /> {personal.email}
                 </span>
@@ -130,10 +123,6 @@ function App() {
               <section className="hero-sidebar__card">
                 <h2>Quick profile</h2>
                 <dl>
-                  <div>
-                    <dt>Location</dt>
-                    <dd>{personal.location}</dd>
-                  </div>
                   <div>
                     <dt>Focus</dt>
                     <dd>Networking &amp; security</dd>

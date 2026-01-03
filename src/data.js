@@ -2,8 +2,6 @@ export const portfolioData = {
   personal: {
     name: "Lovepreet Sidhu",
     role: "Network Admin & Security",
-    location: "Surrey, BC",
-    phone: "778-908-3286",
     email: "lovepreet.sidhu3@student.kpu.ca",
     github: "https://github.com/lovesidhuy",
     resume: "https://github.com/lovesidhuy/portfoliowebsite/blob/main/coopls.pdf"
