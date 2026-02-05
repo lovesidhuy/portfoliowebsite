@@ -95,6 +95,15 @@ function App() {
                   <i className="fas fa-arrow-down" aria-hidden="true" />
                 </a>
                 <a
+                  href={personal.resume}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="kochi-button kochi-button--outline"
+                >
+                  <span>Download resume</span>
+                  <i className="fas fa-file-download" aria-hidden="true" />
+                </a>
+                <a
                   href={personal.github}
                   target="_blank"
                   rel="noreferrer"

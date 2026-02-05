@@ -3,23 +3,24 @@ export const portfolioData = {
     name: "Lovepreet Sidhu",
     role: "Network Admin & Security",
     email: "lovepreet.sidhu3@student.kpu.ca",
-    github: "https://github.com/lovesidhuy"
+    github: "https://github.com/lovesidhuy",
+    resume: "https://github.com/lovesidhuy/portfoliowebsite/blob/main/lscoop.pdf"
   },
 
   summary: [
-    { label: "4th-Year IT Student", text: "Specializing in Network Administration & Security, graduating May 2026." },
-    { label: "Expertise in Networking & Security", text: "Proficient in TCP/IP, VLANs, firewalls, VPNs, and cloud security with AWS." },
-    { label: "Hands-On Problem Solver", text: "Experience in system hardening, FIM, and real-world troubleshooting in fast-paced environments." },
-    { label: "Eager to Contribute", text: "Seeking co-op or roles in IT security and infrastructure." }
+    { label: "Network Engineering Focus", text: "Hands-on with OSPF, BGP, VLAN design, VPNs, Cisco IOS, and precise subnetting." },
+    { label: "Security Operations", text: "Operate SIEM/IDS stacks like Wazuh/OSSEC, leverage Splunk analytics, and investigate threats with Nmap and Wireshark." },
+    { label: "Systems & Cloud Reliability", text: "Manage Windows Server AD/GPO, Microsoft 365, Linux, plus AWS infrastructure with Docker, Kubernetes, Terraform, and Ansible." },
+    { label: "Developer & Support Toolkit", text: "Deliver solutions with Python, Java (Spring Boot), C++, scripting, Git/GitHub, documentation, and frontline hardware support." }
   ],
 
   skills: [
-    { title: "Networking", icon: "fa-network-wired", desc: "TCP/IP, VLANs, OSPF, DHCP, GRE Tunnels, Cisco Packet Tracer, Wireless Systems." },
-    { title: "Security", icon: "fa-user-shield", desc: "System Hardening, FIM (File Integrity Monitoring), VPN Config, Firewall Mgmt, OSSEC." },
-    { title: "OS & Server", icon: "fa-server", desc: "Windows 7/10/11, Server 2016/2019, macOS, Linux (Ubuntu, Kali), Active Directory." },
-    { title: "Cloud & Tools", icon: "fa-cloud", desc: "AWS Solutions Architect Assoc., Microsoft 365, Remote Desktop, Ticketing Systems." },
-    { title: "Scripting", icon: "fa-code", desc: "Python, Bash, SQL, MySQL, HTML/CSS, JavaScript, PHP." },
-    { title: "Hardware", icon: "fa-microchip", desc: "Desktop/Laptop troubleshooting, System Imaging, Peripheral setup." }
+    { title: "Networking", icon: "fa-network-wired", desc: "OSPF, BGP, VPN (IPsec/OpenVPN), VLANs, Subnetting, Cisco IOS." },
+    { title: "Security", icon: "fa-user-shield", desc: "SIEM/IDS (Wazuh/OSSEC), Splunk, Nmap, Wireshark." },
+    { title: "Systems Administration", icon: "fa-server", desc: "Windows Server 2016/2019 (AD, GPO, DNS, DHCP), Microsoft 365, Linux (Ubuntu/Kali)." },
+    { title: "Cloud & Infra", icon: "fa-cloud", desc: "AWS (VPC, EC2, S3, IAM, CloudWatch), Docker, Kubernetes, Terraform, Ansible." },
+    { title: "Programming & Web", icon: "fa-code", desc: "Python, Java (Spring Boot), C++, Bash, PowerShell, SQL, HTML/CSS, JavaScript, PHP." },
+    { title: "Tools & Support", icon: "fa-screwdriver-wrench", desc: "Ticketing Systems, Documentation, Git/GitHub, System Imaging, Hardware Support." }
   ],
 
   projects: [
