@@ -123,6 +123,26 @@ function App() {
                     <dt>Focus</dt>
                     <dd>Networking &amp; security</dd>
                   </div>
+                  <div>
+                    <dt>Education</dt>
+                    <dd>
+                      <p>Bachelor of Technology – Information Technology</p>
+                      <p>Kwantlen Polytechnic University</p>
+                      <p>Intended Specialization: Network Administration and Security</p>
+                      <p>May 2022 – May 2026 (Expected)</p>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Certifications</dt>
+                    <dd>
+                      <p>AWS Certified Solutions Architect – Associate (November 2024)</p>
+                      <p>AWS Certified Cloud Practitioner (February 2024)</p>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Projects</dt>
+                    <dd>File Integrity Monitoring Tool | System S</dd>
+                  </div>
                 </dl>
               </section>
 
