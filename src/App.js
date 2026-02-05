@@ -139,10 +139,6 @@ function App() {
                       <p>AWS Certified Cloud Practitioner (February 2024)</p>
                     </dd>
                   </div>
-                  <div>
-                    <dt>Projects</dt>
-                    <dd>File Integrity Monitoring Tool | System S</dd>
-                  </div>
                 </dl>
               </section>
 

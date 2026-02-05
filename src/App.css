@@ -343,28 +343,41 @@ img {
   font-family: var(--text-display);
   font-size: 1.2rem;
   letter-spacing: 0.08em;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .hero-sidebar__card dl {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px 18px;
+  grid-template-columns: 1fr;
+  gap: 16px;
   font-size: 0.82rem;
+}
+
+.hero-sidebar__card dl > div {
+  display: grid;
+  gap: 6px;
 }
 
 .hero-sidebar__card dt {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 4px;
 }
 
 .hero-sidebar__card dd {
   margin: 0;
-  font-weight: 600;
-  font-size: 0.9rem;
+  font-weight: 500;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.hero-sidebar__card dd p {
+  margin: 2px 0;
+  font-size: 0.82rem;
+  line-height: 1.4;
 }
 
 .hero-sidebar__card ul {

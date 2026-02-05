@@ -175,6 +175,58 @@
             font-size: 1.2rem; 
         }
 
+        /* Quick Profile Box */
+        .quick-profile {
+            background: white;
+            border: var(--border-thick);
+            padding: 15px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--hard-shadow);
+            border-left: 10px solid var(--badge-gold);
+        }
+        
+        .quick-profile h3 {
+            font-family: 'Bangers', cursive;
+            font-size: 1.3rem;
+            color: var(--police-blue);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        .profile-section {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed rgba(0,0,0,0.1);
+        }
+        
+        .profile-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .profile-label {
+            font-family: 'Bangers', cursive;
+            font-size: 0.85rem;
+            color: var(--action-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            display: block;
+        }
+        
+        .profile-content {
+            font-size: 0.85rem;
+            line-height: 1.4;
+            margin: 0;
+        }
+        
+        .profile-content p {
+            margin: 2px 0;
+        }
+
         /* New Container for Buttons to handle layout better */
         .hero-actions {
             margin-top: 25px;
@@ -709,6 +761,35 @@
                     <li><strong>Systems & Cloud Reliability:</strong> Windows Server AD/GPO, Microsoft 365, Linux, plus AWS with Docker, Kubernetes, Terraform, and Ansible.</li>
                     <li><strong>Developer & Support Toolkit:</strong> Python, Java (Spring Boot), C++, scripting, Git/GitHub, documentation, and hardware support.</li>
                 </ul>
+
+                <div class="quick-profile">
+                    <h3>Quick Profile</h3>
+                    
+                    <div class="profile-section">
+                        <span class="profile-label">Focus</span>
+                        <div class="profile-content">
+                            <p>Networking &amp; Security</p>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <span class="profile-label">Education</span>
+                        <div class="profile-content">
+                            <p>Bachelor of Technology – Information Technology</p>
+                            <p>Kwantlen Polytechnic University</p>
+                            <p>Intended Specialization: Network Administration and Security</p>
+                            <p>May 2022 – May 2026 (Expected)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <span class="profile-label">Certifications</span>
+                        <div class="profile-content">
+                            <p>AWS Certified Solutions Architect – Associate (November 2024)</p>
+                            <p>AWS Certified Cloud Practitioner (February 2024)</p>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="hero-actions">
                     <a href="#projects" class="btn-comic">View Missions (Projects)</a>
