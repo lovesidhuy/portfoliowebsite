@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="theme-color" content="#766963">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lovepreet Sidhu | Enterprise Networking & Systems</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
+          integrity="sha256-123456dGVhbQ==" 
+          crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- KOCHIKAME / MANGA THEME --- */
+        :root {
+            /* Palette */
+            --police-blue: #003399;     
+            --badge-gold: #FFD700;        
+            --action-red: #FF4500;        
+            --comic-white: #ffffff;
+            --comic-black: #080808;
+            --manga-grey: #e5e5e5;
+            
+            /* Comic Styles */
+            --border-thick: 4px solid var(--comic-black);
+            --border-thin: 2px solid var(--comic-black);
+            --hard-shadow: 6px 6px 0px var(--comic-black);
+            --hard-shadow-hover: 10px 10px 0px var(--comic-black);
+            --halftone: radial-gradient(circle, var(--manga-grey) 2px, transparent 2.5px);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--comic-white);
+            background-image: var(--halftone);
+            background-size: 20px 20px;
+            color: var(--comic-black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo, .btn-comic, .date-badge, .comic-tag {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background: var(--badge-gold);
+            border-bottom: var(--border-thick);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0px 4px 0px rgba(0,0,0,0.2);
+        }
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .logo { 
+            font-size: 2.2rem; 
+            color: var(--police-blue); 
+            text-shadow: 2px 2px 0px var(--comic-white); 
+            transform: rotate(-2deg); 
+            border: 2px solid black;
+            padding: 0 10px;
+            background: white;
+            z-index: 1001;
+        }
+        
+        .nav-links { display: flex; gap: 25px; }
+        .nav-links a { 
+            font-size: 1.3rem; 
+            color: var(--comic-black); 
+            transition: 0.2s; 
+            position: relative;
+        }
+        .nav-links a:hover { color: var(--action-red); transform: scale(1.1); }
+        .nav-links a:hover::after {
+            content: '!';
+            position: absolute;
+            right: -10px;
+            top: -5px;
+            font-family: 'Bangers', cursive;
+            color: var(--police-blue);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--police-blue);
+        }
+
+        /* --- HERO --- */
+        .hero {
+            background: repeating-linear-gradient(45deg, var(--police-blue), var(--police-blue) 15px, #002266 15px, #002266 30px);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 110px;
+            padding-bottom: 50px;
+            border-bottom: var(--border-thick);
+            position: relative;
+        }
+        
+        /* Speed lines effect */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center, transparent 30%, rgba(255,255,255,0.1) 70%);
+            pointer-events: none;
+        }
+
+        .hero-panel {
+            background: var(--comic-white);
+            border: var(--border-thick);
+            padding: 40px;
+            box-shadow: 15px 15px 0px var(--comic-black);
+            max-width: 950px;
+            margin: 0 auto;
+            position: relative;
+            transform: rotate(-1deg);
+        }
+
+        /* "Speech Bubble" */
+        .hero-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 0; 
+            height: 0; 
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 20px solid var(--comic-black);
+            transform: rotate(-45deg);
+        }
+
+        .hero h1 { font-size: 4rem; line-height: 1; margin-bottom: 15px; color: var(--comic-black); -webkit-text-stroke: 1px black; }
+        .hero h2 { 
+            font-size: 1.8rem; 
+            background: var(--badge-gold); 
+            display: inline-block; 
+            padding: 5px 20px; 
+            border: var(--border-thin); 
+            transform: rotate(-2deg); 
+            margin-bottom: 25px; 
+            color: var(--police-blue); 
+            box-shadow: 4px 4px 0px black;
+        }
+        
+        .contact-bar { margin-bottom: 20px; font-weight: bold; border-bottom: 2px dashed black; padding-bottom: 10px; }
+        .contact-bar i { color: var(--action-red); margin-right: 5px; }
+        .contact-bar span { margin-right: 15px; display: inline-block; margin-bottom: 5px; }
+
+        .summary-list li { margin-bottom: 12px; padding-left: 30px; position: relative; font-size: 1.1rem; }
+        .summary-list li::before { 
+            content: '\f135';
+            font-family: "Font Awesome 6 Free"; 
+            font-weight: 900;
+            color: var(--action-red); 
+            position: absolute; 
+            left: 0; 
+            font-size: 1.2rem; 
+        }
+
+        /* Quick Profile Box */
+        .quick-profile {
+            background: white;
+            border: var(--border-thick);
+            padding: 15px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--hard-shadow);
+            border-left: 10px solid var(--badge-gold);
+        }
+        
+        .quick-profile h3 {
+            font-family: 'Bangers', cursive;
+            font-size: 1.3rem;
+            color: var(--police-blue);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        .profile-section {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed rgba(0,0,0,0.1);
+        }
+        
+        .profile-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .profile-label {
+            font-family: 'Bangers', cursive;
+            font-size: 0.85rem;
+            color: var(--action-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            display: block;
+        }
+        
+        .profile-content {
+            font-size: 0.85rem;
+            line-height: 1.4;
+            margin: 0;
+        }
+        
+        .profile-content p {
+            margin: 2px 0;
+        }
+
+        /* New Container for Buttons to handle layout better */
+        .hero-actions {
+            margin-top: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .btn-comic { 
+            background: var(--action-red); 
+            color: white; 
+            padding: 15px 35px; 
+            border: var(--border-thick); 
+            box-shadow: var(--hard-shadow); 
+            display: inline-block; 
+            font-size: 1.4rem; 
+            cursor: pointer; 
+            transition: 0.2s;
+            text-align: center;
+        }
+        .btn-comic:hover { 
+            transform: translate(-3px, -3px); 
+            box-shadow: var(--hard-shadow-hover); 
+            background: #ff5e00; 
+        }
+
+        /* --- SECTIONS COMMON --- */
+        .section { padding: 80px 0; }
+        .section-title { 
+            text-align: center; 
+            font-size: 3.5rem; 
+            margin-bottom: 60px; 
+            text-shadow: 4px 4px 0px var(--badge-gold);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            background: white;
+            padding: 0 20px;
+            border: var(--border-thin);
+            width: max-content;
+            max-width: 90%;
+        }
+
+        /* --- SKILLS --- */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .skill-card { 
+            background: white; 
+            border: var(--border-thick); 
+            padding: 25px; 
+            box-shadow: var(--hard-shadow); 
+            transition: 0.3s; 
+        }
+        .skill-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 10px 10px 0px var(--comic-black); 
+            background: #fff9c4; /* Light yellow */
+        }
+        .skill-card h3 { 
+            border-bottom: 4px solid var(--action-red); 
+            margin-bottom: 15px; 
+            padding-bottom: 5px; 
+            font-size: 1.6rem; 
+            display: inline-block;
+        }
+        .skill-card p { font-size: 0.95rem; }
+
+        /* --- PROJECTS --- */
+        .bg-comic { 
+            background-color: var(--police-blue); 
+            background-image: radial-gradient(var(--comic-white) 15%, transparent 16%), radial-gradient(var(--comic-white) 15%, transparent 16%);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+            border-top: var(--border-thick); 
+            border-bottom: var(--border-thick); 
+        }
+        .bg-comic .section-title { box-shadow: 4px 4px 0px var(--action-red); }
+
+        .projects-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+        .project-card { 
+            background: white; 
+            border: var(--border-thick); 
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.5); 
+            transition: 0.3s; 
+            position: relative;
+        }
+        .project-card:hover { transform: scale(1.01); box-shadow: 15px 15px 0px var(--badge-gold); }
+        
+        .card-header { 
+            background: var(--comic-black); 
+            color: white; 
+            padding: 15px 20px; 
+            border-bottom: var(--border-thick); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .card-header h3 { color: var(--badge-gold); font-size: 1.5rem; margin: 0; }
+        .date-badge { 
+            background: var(--action-red); 
+            color: white; 
+            padding: 4px 10px; 
+            border: 2px solid white; 
+            transform: rotate(2deg);
+        }
+        
+        .card-body { padding: 25px; }
+        .tech-stack { 
+            background: var(--manga-grey); 
+            display: inline-block; 
+            padding: 8px 12px; 
+            border: 2px solid black; 
+            font-weight: bold; 
+            margin-bottom: 15px; 
+            font-size: 0.9rem; 
+            box-shadow: 3px 3px 0px black;
+        }
+        .project-bullets li { position: relative; padding-left: 25px; margin-bottom: 8px; font-size: 1rem; }
+        .project-bullets li::before { 
+            content: '➤'; 
+            position: absolute; 
+            left: 0; 
+            color: var(--action-red); 
+            font-weight: bold;
+        }
+
+        /* --- EXPERIENCE & EDUCATION --- */
+        .two-col-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+
+        .job-card { 
+            background: white; 
+            border: var(--border-thick); 
+            padding: 20px; 
+            margin-bottom: 30px; 
+            box-shadow: var(--hard-shadow); 
+            position: relative; 
+            border-left: 10px solid var(--police-blue);
+        }
+        .job-title { font-weight: 800; font-size: 1.3rem; color: var(--comic-black); text-transform: uppercase;}
+        .job-company { 
+            font-family: 'Bangers', cursive; 
+            font-size: 1.1rem; 
+            color: var(--action-red); 
+            display: block; 
+            margin-bottom: 10px; 
+            letter-spacing: 1px;
+        }
+        
+        /* UPDATED: Unified Bullet Style */
+        .job-bullets li { 
+            margin-bottom: 6px; 
+            font-size: 0.95rem; 
+            list-style: none; 
+            padding-left: 20px; 
+            position: relative;
+        }
+        .job-bullets li::before {
+            content: '➤';
+            position: absolute;
+            left: 0;
+            color: var(--action-red);
+            font-size: 0.8rem;
+            top: 3px;
+        }
+
+        .edu-card { 
+            background: white; 
+            border: var(--border-thick); 
+            padding: 25px; 
+            margin-bottom: 25px; 
+            box-shadow: var(--hard-shadow); 
+        }
+        .edu-card.special { transform: rotate(1.5deg); background: var(--badge-gold); border-color: black; }
+        
+        .comic-tag {
+            background: var(--comic-black);
+            color: white;
+            padding: 2px 8px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        /* --- FOOTER --- */
+        footer { 
+            background: var(--comic-black); 
+            color: white; 
+            padding: 60px 0; 
+            text-align: center; 
+            border-top: 8px solid var(--action-red); 
+        }
+        .contact-info a { 
+            background: white; 
+            color: black; 
+            padding: 15px 30px; 
+            border: 4px solid var(--badge-gold); 
+            font-weight: bold; 
+            margin: 10px; 
+            display: inline-block; 
+            font-family: 'Bangers', cursive; 
+            font-size: 1.2rem;
+            box-shadow: 5px 5px 0px var(--action-red);
+            transition: 0.2s;
+        }
+        .contact-info p {
+            margin: 8px 0;
+            font-size: 1.2rem;
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
+        }
+        .contact-info p.contact-email {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0;
+        }
+        .contact-info a:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0px var(--action-red); background: var(--badge-gold); }
+        
+/* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            :root {
+                --border-thick: 3px solid var(--comic-black);
+                --hard-shadow: 4px 4px 0px var(--comic-black);
+            }
+
+            /* Fix Navigation */
+            .navbar .container { height: 60px; }
+            .logo { font-size: 1.6rem; padding: 0 8px; }
+            .hamburger { display: block; }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                gap: 0;
+                border-bottom: var(--border-thick);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            }
+
+            .nav-links.active { display: flex; }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px dashed black;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 15px;
+                font-size: 1.3rem;
+            }
+
+            /* Hero Section */
+            .hero {
+                min-height: auto; 
+                padding-top: 80px; 
+                padding-bottom: 30px;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            
+            .hero-panel { 
+                padding: 20px 15px; 
+                margin: 0;
+                transform: rotate(0deg); 
+                width: 100%;
+                box-shadow: 6px 6px 0px var(--comic-black);
+            }
+            
+            .hero h1 { 
+                font-size: 2rem; 
+                line-height: 1.1;
+                word-wrap: break-word;
+            }
+            
+            .hero h2 { 
+                font-size: 1rem; 
+                padding: 5px 12px;
+                transform: rotate(0deg);
+                display: block;
+                text-align: center;
+            }
+            
+            .hero-panel::after { display: none; }
+
+            .contact-bar {
+                font-size: 0.85rem;
+                line-height: 1.8;
+            }
+            
+            .contact-bar span {
+                display: block;
+                margin-bottom: 8px;
+                margin-right: 0;
+            }
+
+            .summary-list li { 
+                font-size: 0.9rem;
+                padding-left: 25px;
+                margin-bottom: 10px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 20px;
+            }
+            
+            .btn-comic {
+                width: 100%;
+                text-align: center;
+                font-size: 1.1rem;
+                padding: 12px 20px;
+                margin: 0;
+                box-shadow: 4px 4px 0px var(--comic-black);
+            }
+            
+            .btn-comic:hover {
+                transform: none;
+                box-shadow: 4px 4px 0px var(--comic-black);
+            }
+
+            /* Sections */
+            .section { 
+                padding: 50px 15px;
+            }
+            
+            .section-title { 
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+                transform: rotate(0deg);
+                padding: 5px 15px;
+                max-width: 100%;
+            }
+
+            /* Skills Grid */
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .skill-card {
+                box-shadow: 4px 4px 0px var(--comic-black);
+            }
+            
+            .skill-card:hover {
+                transform: none;
+                box-shadow: 4px 4px 0px var(--comic-black);
+            }
+            
+            .skill-card h3 {
+                font-size: 1.3rem;
+            }
+
+            /* Projects */
+            .projects-grid {
+                gap: 25px;
+            }
+            
+            .project-card {
+                box-shadow: 6px 6px 0px rgba(0,0,0,0.5);
+            }
+            
+            .project-card:hover { 
+                transform: none; 
+                box-shadow: 6px 6px 0px rgba(0,0,0,0.5); 
+            }
+            
+            .card-header {
+                padding: 12px 15px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            .card-header h3 {
+                font-size: 1.2rem;
+                word-wrap: break-word;
+            }
+            
+            .date-badge {
+                align-self: flex-end;
+                transform: rotate(0deg);
+            }
+            
+            .card-body {
+                padding: 15px;
+            }
+            
+            .tech-stack {
+                font-size: 0.8rem;
+                padding: 6px 10px;
+                box-shadow: 2px 2px 0px black;
+                display: block;
+                margin-bottom: 12px;
+            }
+            
+            .project-bullets li {
+                font-size: 0.9rem;
+                padding-left: 20px;
+            }
+
+            /* Experience & Education */
+            .two-col-grid { 
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .job-card {
+                padding: 15px;
+                margin-bottom: 20px;
+                box-shadow: 4px 4px 0px var(--comic-black);
+                border-left-width: 6px;
+            }
+            
+            .job-title {
+                font-size: 1.1rem;
+            }
+            
+            .job-company {
+                font-size: 0.95rem;
+            }
+            
+            .job-bullets li {
+                font-size: 0.85rem;
+            }
+            
+            .edu-card {
+                padding: 15px;
+                margin-bottom: 20px;
+                box-shadow: 4px 4px 0px var(--comic-black);
+            }
+            
+            .edu-card.special { 
+                transform: rotate(0deg); 
+            }
+            
+            .edu-card h3 {
+                font-size: 1.1rem;
+            }
+            
+            .comic-tag {
+                font-size: 0.7rem;
+                padding: 2px 6px;
+            }
+
+            /* Footer */
+            footer {
+                padding: 40px 15px;
+            }
+            
+            footer h2 {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+            
+            .contact-info a {
+                padding: 12px 20px;
+                font-size: 1rem;
+                margin: 8px;
+                box-shadow: 4px 4px 0px var(--action-red);
+                display: block;
+                max-width: 280px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .contact-info p {
+                font-size: 1rem;
+            }
+            
+            .contact-info a:hover {
+                transform: none;
+                box-shadow: 4px 4px 0px var(--action-red);
+            }
+            
+            .copyright {
+                font-size: 0.9rem !important;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.7rem; }
+            .section-title { font-size: 1.5rem; }
+            .btn-comic { font-size: 1rem; padding: 10px 15px; }
+            .container { padding: 0 15px; }
+        }        
+    </style>
+
+
+</head>
+
+<body id="top">
+    
+    <nav class="navbar">
+        <div class="container">
+            <a href="#top" class="logo">LS. <i class="fas fa-shield-alt"></i></a>
+            
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#skills" onclick="toggleMenu()">Skills</a></li>
+                <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+                <li><a href="https://github.com/lovesidhuy" target="_blank">GitHub</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-panel">
+                <h1>Lovepreet Sidhu</h1>
+                <h2>Enterprise Networking & Systems/Security</h2>
+                
+                <div class="contact-bar">
+                    <span><i class="fas fa-envelope"></i> lovepreet.sidhu3@student.kpu.ca</span>
+                </div>
+
+                <ul class="summary-list">
+                    <li><strong>Enterprise Networking:</strong> OSPF, BGP, VLAN architecture, VPN design, Cisco IOS, and precise subnetting.</li>
+                    <li><strong>Systems & Security Admin:</strong> Windows Server AD/DNS/GPO, Linux administration, endpoint hardening, and SIEM/IDS tooling.</li>
+                    <li><strong>Wireless Systems:</strong> Wi-Fi 6 fundamentals, 802.1X access control, RF basics, and troubleshooting.</li>
+                    <li><strong>ERP & Support:</strong> ERP-style workflows, documentation, ticket-driven support, and user enablement.</li>
+                </ul>
+
+                <div class="quick-profile">
+                    <h3>Quick Profile</h3>
+                    
+                    <div class="profile-section">
+                        <span class="profile-label">Focus</span>
+                        <div class="profile-content">
+                            <p>Enterprise Networking, Systems/Security, Wireless, ERP, Support</p>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <span class="profile-label">Education</span>
+                        <div class="profile-content">
+                            <p>Bachelor of Technology – Information Technology</p>
+                            <p>Kwantlen Polytechnic University</p>
+                            <p>Intended Specialization: Network Administration and Security</p>
+                            <p>May 2022 – May 2026 (Expected)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <span class="profile-label">Certifications</span>
+                        <div class="profile-content">
+                            <p>AWS Certified Solutions Architect – Associate (November 2024)</p>
+                            <p>AWS Certified Cloud Practitioner (February 2024)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="#projects" class="btn-comic">View Missions (Projects)</a>
+                    <a href="https://github.com/lovesidhuy/portfoliowebsite/blob/main/lscoop.pdf" target="_blank" class="btn-comic" style="background: var(--action-red);">
+                        Download Resume
+                    </a>
+                    <a href="https://github.com/lovesidhuy" target="_blank" class="btn-comic" style="background: var(--police-blue);">GitHub</a>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Power Set (Skills)</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3><i class="fas fa-network-wired"></i> Enterprise Networking</h3>
+                    <p>OSPF, BGP, VPN (IPsec/OpenVPN), VLANs, subnetting, Cisco IOS.</p>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="fas fa-user-shield"></i> Security Operations</h3>
+                    <p>SIEM/IDS (Wazuh/OSSEC), Splunk, Nmap, Wireshark, hardening.</p>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="fas fa-server"></i> Systems Administration</h3>
+                    <p>Windows Server 2016/2019 (AD, GPO, DNS, DHCP), Microsoft 365, Linux (Ubuntu/Kali).</p>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="fas fa-wifi"></i> Wireless Systems</h3>
+                    <p>Wi-Fi 6, 802.1X, RF fundamentals, access point troubleshooting.</p>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="fas fa-database"></i> ERP & Reporting</h3>
+                    <p>Odoo ERP, workflow automation, role-based access, reporting.</p>
+                </div>
+                <div class="skill-card">
+                    <h3><i class="fas fa-screwdriver-wrench"></i> Tools & Support</h3>
+                    <p>Ticketing systems, documentation, system imaging, hardware support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section bg-comic">
+        <div class="container">
+            <h2 class="section-title" style="transform: rotate(2deg);">Key Projects</h2>
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <div class="card-header">
+                        <h3>STaaS Cloud-Based Smart Drive</h3>
+                        <span class="date-badge">Dec 2025</span>
+                    </div>
+                    <div class="card-body">
+                        <span class="tech-stack">AWS (VPC, EC2, S3, IAM) | Java Spring Boot | Docker | MongoDB</span>
+                        <ul class="project-bullets">
+                            <li><strong>Architecture:</strong> Architected a secure AWS infrastructure using a VPC with segmented public/private subnets, NAT Gateways, and Bastion hosts.</li>
+                            <li><strong>Development:</strong> Developed a scalable storage platform using Java Spring Boot and AWS S3.</li>
+                            <li><strong>Features:</strong> Implemented automated file classification, secure pre-signed URLs, and storage quotas.</li>
+                        </ul>
+                        <a href="https://github.com/lovesidhuy/STaaS-Cloud-Based-Smart-Drive/blob/main/README.md" 
+                           target="_blank" 
+                           class="btn-comic" 
+                           style="font-size: 1rem; padding: 8px 20px; margin-top: 15px;">
+                           View Project
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <h3>File Integrity Monitoring Tool</h3>
+                        <span class="date-badge">Mar 2025</span>
+                    </div>
+                    <div class="card-body">
+                        <span class="tech-stack">Java (SHA-256) | WatchService API | OSSEC | Kali Linux</span>
+                        <ul class="project-bullets">
+                            <li><strong>System Design:</strong> Designed a FIM system utilizing SHA-256 hashing and real-time directory monitoring.</li>
+                            <li><strong>Intrusion Detection:</strong> Deployed and documented OSSEC on a Kali Linux VM.</li>
+                            <li><strong>Documentation:</strong> Created user guides emphasizing security benefits and regulatory compliance for non-technical users.</li>
+                        </ul>
+                         <a href="https://github.com/lovesidhuy/file-integrity-monitoring-tool/blob/main/README.md" 
+                         target="_blank" 
+                         class="btn-comic" 
+                         style="font-size: 1rem; padding: 8px 20px; margin-top: 15px;">
+                         View Project
+                      </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <h3>Online Recruitment System</h3>
+                        <span class="date-badge">Mar 2025</span>
+                    </div>
+                    <div class="card-body">
+                        <span class="tech-stack">PHP | MySQL | XAMPP | OpenAI API | LangChain</span>
+                        <ul class="project-bullets">
+                            <li><strong>Full Stack:</strong> Built a recruitment system featuring dedicated applicant and HR admin interfaces.</li>
+                            <li><strong>AI Integration:</strong> Integrated AI-based screening using OpenAI and LangChain (JS) to automate candidate evaluation.</li>
+                            <li><strong>Backend:</strong> Structured backend logic with modular methods for scalable development.</li>
+                        </ul>
+                        <a href="https://github.com/lovesidhuy/online-recruiting-system/blob/main/README.md" 
+                         target="_blank" 
+                         class="btn-comic" 
+                         style="font-size: 1rem; padding: 8px 20px; margin-top: 15px;">
+                         View Project
+                      </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <h2>Ready to Team Up?</h2>
+            <div class="contact-info">
+                <a href="#top"><i class="fas fa-globe"></i> Portfolio</a>
+                <p>Lovepreet Sidhu</p>
+                <p>Enterprise Networking &amp; Systems/Security</p>
+                <p class="contact-email"><i class="fas fa-envelope"></i> lovepreet.sidhu3@student.kpu.ca</p>
+            </div>
+            
+            <p class="copyright" style="margin-top: 30px; font-size: 1rem; font-family: 'Bangers'; letter-spacing: 1px;">&copy; 2025 Lovepreet Sidhu.</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        function toggleMenu() {
+            if (window.innerWidth <= 768) {
+                navLinks.classList.remove('active');
+            }
+        }
+    </script>
+
+</body>
+</html>
