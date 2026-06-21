@@ -424,7 +424,7 @@ function Footer() {
             © {new Date().getFullYear()} {profile.name} · Built with React
           </p>
 
-          <a href="/old-site/" className="footer__legacy-link">
+          <a href="./old-site/index.html" className="footer__legacy-link">
             <i className="fas fa-anchor"></i>
             View older portfolio
           </a>

@@ -6,8 +6,8 @@ export const profile = {
   email: 'lovepreet.sidhu3@student.kpu.ca',
   phone: '778-908-3286',
   github: 'https://github.com/lovesidhuy',
-  linkedin: 'https://linkedin.com/in/lovesidhuy',
-  resume: '/ls_resume.pdf',
+  linkedin: 'https://linkedin.com/in/lovepreetssidhu/',
+  resume: './ls_resume.pdf',
   gradDate: 'Dec 2026',
   status: 'Open to opportunities',
 };
