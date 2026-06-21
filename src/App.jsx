@@ -8,6 +8,9 @@ import {
   additionalProjects,
   experience,
   projectAnalyticsLabel,
+  siteUrls,
+  formSubmit,
+  autoresponseMessage,
 } from './data';
 import { trackMobileNavOpen, trackSectionView } from './analytics/events';
 import { useAnalytics } from './hooks/useAnalytics';
@@ -41,6 +44,7 @@ function App() {
         <SkillsSection />
         <ExperienceSection />
         <ContactSection />
+        <ResumeRequestSection />
       </main>
       <Footer />
     </div>
@@ -390,6 +394,88 @@ function ContactSection() {
             >
               <i className="fas fa-file-download"></i>
               Download Resume
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ResumeRequestSection() {
+  const params = new URLSearchParams(
+    typeof window !== 'undefined' ? window.location.search : ''
+  );
+  const requestSent = params.get('request') === 'sent';
+
+  return (
+    <section id="resume-request" className="section resume-request" data-analytics-section="resume_request">
+      <div className="container">
+        <div className="resume-request__card">
+          <h2>Want my portfolio and resume?</h2>
+          <p className="resume-request__lead">
+            Enter your email and I&apos;ll send you direct links to my portfolio and resume.
+          </p>
+
+          {requestSent && (
+            <p className="resume-request__success" role="status">
+              Thanks — check your inbox for the links. You can also open them directly below.
+            </p>
+          )}
+
+          <form className="resume-request__form" action={formSubmit.action} method="POST">
+            <label className="visually-hidden" htmlFor="resume-request-email">
+              Email address
+            </label>
+            <input
+              id="resume-request-email"
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              autoComplete="email"
+              required
+            />
+
+            <input type="hidden" name="_subject" value="New resume request from portfolio" />
+            <input type="hidden" name="_next" value={formSubmit.redirect} />
+            <input type="hidden" name="_autoresponse" value={autoresponseMessage} />
+            <input
+              type="text"
+              name="_honey"
+              className="resume-request__honey"
+              tabIndex={-1}
+              autoComplete="off"
+            />
+
+            <button type="submit" className="btn btn--primary">
+              <i className="fas fa-paper-plane" aria-hidden="true"></i>
+              Send me the links
+            </button>
+          </form>
+
+          <p className="resume-request__or">Or view directly:</p>
+          <div className="resume-request__direct">
+            <a
+              href={siteUrls.portfolio}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn--outline btn--sm"
+              data-analytics="outbound"
+              data-analytics-label="portfolio_direct"
+            >
+              <i className="fas fa-compass" aria-hidden="true"></i>
+              View Portfolio
+            </a>
+            <a
+              href={siteUrls.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn--gold btn--sm"
+              data-analytics="resume"
+              data-analytics-location="resume_request"
+            >
+              <i className="fas fa-file-download" aria-hidden="true"></i>
+              View Resume
             </a>
           </div>
         </div>

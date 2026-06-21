@@ -12,6 +12,27 @@ export const profile = {
   status: 'Open to opportunities',
 };
 
+export const siteUrls = {
+  portfolio: 'https://lovesidhuy.github.io/portfoliowebsite/',
+  resume: 'https://lovesidhuy.github.io/portfoliowebsite/ls_resume.pdf',
+};
+
+export const formSubmit = {
+  action: 'https://formsubmit.co/lovepreetsidhu8173@gmail.com',
+  redirect: 'https://lovesidhuy.github.io/portfoliowebsite/?request=sent#resume-request',
+};
+
+export const autoresponseMessage = `Hi, thanks for your interest.
+
+You can view my portfolio here:
+${siteUrls.portfolio}
+
+You can view or download my resume here:
+${siteUrls.resume}
+
+Best regards,
+Lovepreet Sidhu`;
+
 export const certifications = [
   {
     name: 'AWS Certified Solutions Architect – Associate',
