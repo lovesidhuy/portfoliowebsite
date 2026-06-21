@@ -1,3 +1,3 @@
 window.PORTFOLIO_ANALYTICS = {
-  "site_version": "0.2.0"
+  "site_version": "0.2.1"
 };

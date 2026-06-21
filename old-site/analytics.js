@@ -45,8 +45,8 @@
     });
   }
 
-  function trackNav(section) {
-    track('nav_click', { section: section });
+  function trackNav(sectionName) {
+    track('nav_click', { section_name: sectionName });
   }
 
   function trackScrollDepth(percent) {
