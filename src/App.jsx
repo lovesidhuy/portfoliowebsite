@@ -7,12 +7,17 @@ import {
   featuredProjects,
   additionalProjects,
   experience,
+  projectAnalyticsLabel,
 } from './data';
+import { trackMobileNavOpen, trackSectionView } from './analytics/events';
+import { useAnalytics } from './hooks/useAnalytics';
 import './App.css';
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showAllProjects, setShowAllProjects] = useState(false);
+
+  useAnalytics();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,44 +32,41 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const trackEvent = (eventName, params = {}) => {
-    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-      window.gtag('event', eventName, params);
-    }
-  };
-
   return (
     <div className="app">
-      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} trackEvent={trackEvent} />
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <main id="main-content">
-        <Hero trackEvent={trackEvent} />
+        <Hero />
         <CertStrip />
-        <FeaturedProjects
-          showAll={showAllProjects}
-          setShowAll={setShowAllProjects}
-          trackEvent={trackEvent}
-        />
+        <FeaturedProjects showAll={showAllProjects} setShowAll={setShowAllProjects} />
         <SkillsSection />
         <ExperienceSection />
-        <ContactSection trackEvent={trackEvent} />
+        <ContactSection />
       </main>
       <Footer />
     </div>
   );
 }
 
-function Header({ menuOpen, setMenuOpen, trackEvent }) {
+function Header({ menuOpen, setMenuOpen }) {
+  const closeNav = () => setMenuOpen(false);
+
+  const toggleNav = () => {
+    if (!menuOpen) trackMobileNavOpen();
+    setMenuOpen((open) => !open);
+  };
+
   return (
     <header className="header">
       <div className="header__inner container">
-        <a href="#main-content" className="header__brand">
+        <a href="#about" className="header__brand">
           <span className="header__logo">LS</span>
           <span className="header__name">{profile.name}</span>
         </a>
 
         <button
           className="header__toggle"
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={toggleNav}
           aria-expanded={menuOpen}
           aria-label="Toggle navigation"
         >
@@ -72,21 +74,37 @@ function Header({ menuOpen, setMenuOpen, trackEvent }) {
         </button>
 
         <nav className={`header__nav ${menuOpen ? 'header__nav--open' : ''}`}>
-          <a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a>
-          <a href="#skills" onClick={() => setMenuOpen(false)}>Skills</a>
-          <a href="#experience" onClick={() => setMenuOpen(false)}>Experience</a>
+          <a href="#about" data-analytics="nav" data-analytics-label="about" onClick={closeNav}>
+            About
+          </a>
+          <a href="#projects" data-analytics="nav" data-analytics-label="projects" onClick={closeNav}>
+            Projects
+          </a>
+          <a href="#skills" data-analytics="nav" data-analytics-label="skills" onClick={closeNav}>
+            Skills
+          </a>
+          <a href="#experience" data-analytics="nav" data-analytics-label="experience" onClick={closeNav}>
+            Experience
+          </a>
           <a
             href={profile.github}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackEvent('outbound_click', { link_type: 'github', location: 'header' })}
+            data-analytics="outbound"
+            data-analytics-label="github_nav"
+            onClick={closeNav}
           >
             GitHub
+          </a>
+          <a href="#contact" data-analytics="nav" data-analytics-label="contact" onClick={closeNav}>
+            Contact
           </a>
           <a
             href={profile.resume}
             className="header__cta"
-            onClick={() => trackEvent('resume_download', { location: 'header' })}
+            data-analytics="resume"
+            data-analytics-location="header"
+            onClick={closeNav}
           >
             Resume
           </a>
@@ -96,9 +114,9 @@ function Header({ menuOpen, setMenuOpen, trackEvent }) {
   );
 }
 
-function Hero({ trackEvent }) {
+function Hero() {
   return (
-    <section className="hero">
+    <section id="about" className="hero" data-analytics-section="about">
       <div className="hero__bg"></div>
       <div className="hero__inner container">
         <div className="hero__content">
@@ -120,12 +138,18 @@ function Hero({ trackEvent }) {
             <a
               href={profile.resume}
               className="btn btn--primary"
-              onClick={() => trackEvent('resume_download', { location: 'hero' })}
+              data-analytics="resume"
+              data-analytics-location="hero"
             >
               <i className="fas fa-file-download"></i>
               Download Resume
             </a>
-            <a href="#projects" className="btn btn--outline">
+            <a
+              href="#projects"
+              className="btn btn--outline"
+              data-analytics="nav"
+              data-analytics-label="projects_cta"
+            >
               <i className="fas fa-folder-open"></i>
               View Projects
             </a>
@@ -134,10 +158,22 @@ function Hero({ trackEvent }) {
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn--secondary"
-              onClick={() => trackEvent('outbound_click', { link_type: 'linkedin', location: 'hero' })}
+              data-analytics="outbound"
+              data-analytics-label="linkedin_hero"
             >
               <i className="fab fa-linkedin"></i>
               LinkedIn
+            </a>
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn--outline"
+              data-analytics="outbound"
+              data-analytics-label="github_hero"
+            >
+              <i className="fab fa-github"></i>
+              GitHub
             </a>
           </div>
         </div>
@@ -178,8 +214,20 @@ function CertCard() {
       </h2>
       <ul>
         {certifications.map((cert, i) => (
-          <li key={i}>
-            <span className="cert-card__name">{cert.name}</span>
+          <li key={cert.name}>
+            <div className="cert-card__info">
+              <span className="cert-card__name">{cert.name}</span>
+              <a
+                href={cert.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cert-card__link"
+                data-analytics="outbound"
+                data-analytics-label={`cert_${i}`}
+              >
+                {cert.linkLabel}
+              </a>
+            </div>
             <span className="cert-card__date">{cert.date}</span>
           </li>
         ))}
@@ -215,60 +263,65 @@ function CertStrip() {
   );
 }
 
-function FeaturedProjects({ showAll, setShowAll, trackEvent }) {
+function FeaturedProjects({ showAll, setShowAll }) {
   const displayedProjects = showAll
     ? [...featuredProjects, ...additionalProjects]
     : featuredProjects;
 
+  useEffect(() => {
+    if (showAll) trackSectionView('more_projects');
+  }, [showAll]);
+
   return (
     <section id="projects" className="section projects" data-analytics-section="projects">
-      <div className="container">
-        <header className="section__header">
-          <h2 className="section__title">
-            <i className="fas fa-rocket"></i>
-            Featured Projects
-          </h2>
-          <span className="section__label">Security-focused infrastructure & systems</span>
-        </header>
+        <div className="container">
+          <header className="section__header">
+            <h2 className="section__title">
+              <i className="fas fa-rocket"></i>
+              Featured Projects
+            </h2>
+            <span className="section__label">Security-focused infrastructure & systems</span>
+          </header>
 
-        <div className="projects__grid">
-          {displayedProjects.map((project) => (
-            <article key={project.id} className={`project-card ${project.featured ? 'project-card--featured' : ''}`}>
-              <div className="project-card__header">
-                <span className="project-card__date">{project.date}</span>
-                {project.course && <span className="project-card__course">{project.course}</span>}
-              </div>
-              <h3 className="project-card__title">{project.title}</h3>
-              <p className="project-card__stack">{project.stack}</p>
-              <ul className="project-card__bullets">
-                {project.bullets.map((bullet, i) => (
-                  <li key={i}>{bullet}</li>
-                ))}
-              </ul>
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn--outline btn--sm"
-                onClick={() => trackEvent('outbound_click', { link_type: 'project', project_id: project.id })}
+          <div className="projects__grid">
+            {displayedProjects.map((project) => (
+              <article
+                key={project.id}
+                className={`project-card ${project.featured ? 'project-card--featured' : ''}`}
               >
-                <i className="fas fa-external-link-alt"></i>
-                {project.linkLabel || 'View Project'}
-              </a>
-            </article>
-          ))}
-        </div>
-
-        {!showAll && additionalProjects.length > 0 && (
-          <div className="projects__more">
-            <button
-              className="btn btn--secondary"
-              onClick={() => setShowAll(true)}
-            >
-              <i className="fas fa-plus"></i>
-              More Projects
-            </button>
+                <div className="project-card__header">
+                  <span className="project-card__date">{project.date}</span>
+                  {project.course && <span className="project-card__course">{project.course}</span>}
+                </div>
+                <h3 className="project-card__title">{project.title}</h3>
+                <p className="project-card__stack">{project.stack}</p>
+                <ul className="project-card__bullets">
+                  {project.bullets.map((bullet, i) => (
+                    <li key={i}>{bullet}</li>
+                  ))}
+                </ul>
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn--outline btn--sm"
+                  data-analytics="outbound"
+                  data-analytics-label={projectAnalyticsLabel(project)}
+                >
+                  <i className="fas fa-external-link-alt"></i>
+                  {project.linkLabel || 'View Project'}
+                </a>
+              </article>
+            ))}
           </div>
+
+          {!showAll && additionalProjects.length > 0 && (
+            <div className="projects__more">
+              <button type="button" className="btn btn--secondary" onClick={() => setShowAll(true)}>
+                <i className="fas fa-plus"></i>
+                More Projects
+              </button>
+            </div>
         )}
       </div>
     </section>
@@ -288,16 +341,16 @@ function SkillsSection() {
         </header>
 
         <div className="skills__grid">
-          {skills.map((skill, i) => (
-            <div key={i} className="skill-card">
+          {skills.map((skill) => (
+            <div key={skill.category} className="skill-card">
               <div className="skill-card__icon">
                 <i className={`fas ${skill.icon}`}></i>
               </div>
               <div className="skill-card__content">
                 <h3>{skill.category}</h3>
                 <div className="skill-card__tags">
-                  {skill.items.map((item, j) => (
-                    <span key={j} className="tag">{item}</span>
+                  {skill.items.map((item) => (
+                    <span key={item} className="tag">{item}</span>
                   ))}
                 </div>
               </div>
@@ -322,8 +375,8 @@ function ExperienceSection() {
         </header>
 
         <div className="experience__grid">
-          {experience.map((job, i) => (
-            <article key={i} className={`exp-card exp-card--${job.category}`}>
+          {experience.map((job) => (
+            <article key={`${job.title}-${job.company}`} className={`exp-card exp-card--${job.category}`}>
               <div className="exp-card__header">
                 <h3>{job.title}</h3>
                 <div className="exp-card__meta">
@@ -332,8 +385,8 @@ function ExperienceSection() {
                 </div>
               </div>
               <ul className="exp-card__bullets">
-                {job.bullets.map((bullet, j) => (
-                  <li key={j}>{bullet}</li>
+                {job.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
                 ))}
               </ul>
             </article>
@@ -357,7 +410,7 @@ function ExperienceSection() {
   );
 }
 
-function ContactSection({ trackEvent }) {
+function ContactSection() {
   return (
     <section id="contact" className="section contact" data-analytics-section="contact">
       <div className="container">
@@ -366,27 +419,56 @@ function ContactSection({ trackEvent }) {
           <p>Interested in network security, cloud infrastructure, or enterprise systems? Let's talk.</p>
 
           <div className="contact-card__actions">
-            <a href={`mailto:${profile.email}`} className="btn btn--primary">
+            <a
+              href={`mailto:${profile.email}`}
+              className="btn btn--primary"
+              data-analytics="outbound"
+              data-analytics-label="email_contact"
+            >
               <i className="fas fa-envelope"></i>
               Email Me
             </a>
             <a
               href={profile.resume}
               className="btn btn--gold"
-              onClick={() => trackEvent('resume_download', { location: 'contact' })}
+              data-analytics="resume"
+              data-analytics-location="contact"
             >
               <i className="fas fa-file-download"></i>
               Download Resume
+            </a>
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn--secondary"
+              data-analytics="outbound"
+              data-analytics-label="linkedin_contact"
+            >
+              <i className="fab fa-linkedin"></i>
+              LinkedIn
             </a>
             <a
               href={profile.github}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn--outline"
-              onClick={() => trackEvent('outbound_click', { link_type: 'github', location: 'contact' })}
+              data-analytics="outbound"
+              data-analytics-label="github_contact"
             >
               <i className="fab fa-github"></i>
               GitHub
+            </a>
+            <a
+              href="./old-site/index.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn--outline"
+              data-analytics="outbound"
+              data-analytics-label="legacy_portfolio"
+            >
+              <i className="fas fa-history"></i>
+              Older Portfolio
             </a>
           </div>
         </div>
@@ -406,16 +488,36 @@ function Footer() {
           <p className="footer__tagline">{profile.role} · {profile.location}</p>
 
           <nav className="footer__links">
-            <a href={`mailto:${profile.email}`}>
+            <a
+              href={`mailto:${profile.email}`}
+              data-analytics="outbound"
+              data-analytics-label="email_footer"
+            >
               <i className="fas fa-envelope"></i>
             </a>
-            <a href={`tel:${profile.phone.replace(/-/g, '')}`}>
+            <a
+              href={`tel:${profile.phone.replace(/-/g, '')}`}
+              data-analytics="outbound"
+              data-analytics-label="phone_footer"
+            >
               <i className="fas fa-phone"></i>
             </a>
-            <a href={profile.github} target="_blank" rel="noopener noreferrer">
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-analytics="outbound"
+              data-analytics-label="github_footer"
+            >
               <i className="fab fa-github"></i>
             </a>
-            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-analytics="outbound"
+              data-analytics-label="linkedin_footer"
+            >
               <i className="fab fa-linkedin"></i>
             </a>
           </nav>
@@ -424,7 +526,12 @@ function Footer() {
             © {new Date().getFullYear()} {profile.name} · Built with React
           </p>
 
-          <a href="./old-site/index.html" className="footer__legacy-link">
+          <a
+            href="./old-site/index.html"
+            className="footer__legacy-link"
+            data-analytics="outbound"
+            data-analytics-label="legacy_portfolio_footer"
+          >
             <i className="fas fa-anchor"></i>
             View older portfolio
           </a>

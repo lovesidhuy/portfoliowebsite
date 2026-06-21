@@ -15,15 +15,21 @@ export const profile = {
 export const certifications = [
   {
     name: 'AWS Certified Solutions Architect – Associate',
-    issuer: 'Amazon Web Services',
     date: 'Nov 2024',
-    link: 'https://www.credly.com/badges/aws-solutions-architect-associate',
+    link: 'https://www.credly.com/badges/edc04461-7255-46db-b93b-0772b1b4d496/linked_in_profile',
+    linkLabel: 'view cert',
   },
   {
     name: 'AWS Certified Cloud Practitioner',
-    issuer: 'Amazon Web Services',
     date: 'Feb 2024',
-    link: 'https://www.credly.com/badges/aws-cloud-practitioner',
+    link: 'https://www.credly.com/badges/dd482bdb-ceb5-453a-a41d-8413b877ee7d/linked_in_profile',
+    linkLabel: 'view cert',
+  },
+  {
+    name: 'Codecademy — Command Line Certification',
+    date: '2024',
+    link: 'https://www.codecademy.com/profiles/py4805662099/certificates/c87ba0541f8be78bc2f4ba1128233f6f',
+    linkLabel: 'view credentials',
   },
 ];
 
@@ -51,9 +57,14 @@ export const skills = [
     items: ['AWS (VPC, EC2, S3, IAM)', 'Docker', 'Active Directory', 'Windows Server', 'Linux', 'Python'],
   },
   {
+    category: 'Wireless & IoT',
+    icon: 'fa-wifi',
+    items: ['Wi-Fi 6', 'WPA3', 'WLAN Design', 'RF Fundamentals', 'IoT Sensors', 'Arduino'],
+  },
+  {
     category: 'Scripting & Tools',
     icon: 'fa-code',
-    items: ['Python', 'Bash', 'SQL', 'Git', 'MongoDB', 'JavaScript'],
+    items: ['Python', 'Bash', 'SQL', 'Git', 'MongoDB', 'JavaScript', 'Java'],
   },
 ];
 
@@ -75,8 +86,8 @@ export const featuredProjects = [
   },
   {
     id: 'auth-lab',
-    title: 'Enterprise Authentication Lab',
-    course: 'INFO 4370 - Wireless Systems Security',
+    title: 'Identity Infrastructure & Enterprise Authentication Lab',
+    course: 'INFO 4370 - Security of Wireless Systems',
     date: 'Mar 2025 – Feb 2026',
     stack: 'Windows Server, Azure, RADIUS, EAP-TLS, 802.1X',
     featured: true,
@@ -85,13 +96,13 @@ export const featuredProjects = [
       'Eliminated password-based network access using internal Certificate Authority.',
       'Validated security via Wireshark captures and Event ID log analysis.',
     ],
-    link: '/wifi_radius_security_report.pdf',
+    link: './wifi_radius_security_report.pdf',
     linkLabel: 'Technical Report',
   },
   {
     id: 'security-ops',
-    title: 'Security Operations & Threat Detection',
-    course: 'INFO 3171/4120 - Systems Security',
+    title: 'Security Operations & Threat Detection Lab',
+    course: 'INFO 3171/4120 - Systems Security & Digital Forensics',
     date: 'Mar 2025 – Feb 2026',
     stack: 'Kali Linux, OSSEC, Autopsy, Java, SHA-256',
     featured: true,
@@ -127,19 +138,19 @@ export const additionalProjects = [
       'Built local-first Chrome extension for job application autofill.',
       'Integrated Ollama AI for intelligent form completion without cloud dependency.',
     ],
-    link: 'https://github.com/lovesidhuy/formpilot-ai',
+    link: 'https://github.com/lovesidhuy/formpilot-ai-job-application-autofill',
     linkLabel: 'GitHub',
   },
   {
     id: 'iot-monitor',
-    title: 'IoT Patient Monitoring System',
+    title: 'IoT Smart Patient Monitoring & Alert System',
     date: 'Mar 2026',
     stack: 'Arduino, Embedded C/C++, Sensors',
     bullets: [
       'Arduino-based healthcare monitoring tracking temperature, heart rate, movement.',
       'Pure edge computing with no cloud or Wi-Fi dependency.',
     ],
-    link: 'https://github.com/lovesidhuy/iot-patient-monitor',
+    link: 'https://github.com/lovesidhuy/Smart-Patient-Control-System',
     linkLabel: 'View code',
   },
 ];
@@ -186,3 +197,11 @@ export const experience = [
     ],
   },
 ];
+
+function slugify(value) {
+  return value.toLowerCase().replace(/\s+/g, '_');
+}
+
+export function projectAnalyticsLabel(project) {
+  return `project_${slugify(project.title)}`;
+}

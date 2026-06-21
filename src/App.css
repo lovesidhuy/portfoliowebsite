@@ -409,6 +409,27 @@
   border-bottom: 2px dashed rgba(120, 53, 15, 0.2);
 }
 
+.cert-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.cert-card__link {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--captain-red);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cert-card__link:hover {
+  color: var(--ocean-blue);
+}
+
 .cert-card li:last-child {
   border-bottom: none;
   padding-bottom: 0;
