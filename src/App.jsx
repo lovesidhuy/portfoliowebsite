@@ -37,7 +37,6 @@ function App() {
       <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <main id="main-content">
         <Hero />
-        <CertStrip />
         <FeaturedProjects showAll={showAllProjects} setShowAll={setShowAllProjects} />
         <SkillsSection />
         <ExperienceSection />
@@ -59,9 +58,8 @@ function Header({ menuOpen, setMenuOpen }) {
   return (
     <header className="header">
       <div className="header__inner container">
-        <a href="#about" className="header__brand">
+        <a href="#about" className="header__brand" aria-label={`${profile.name} home`}>
           <span className="header__logo">LS</span>
-          <span className="header__name">{profile.name}</span>
         </a>
 
         <button
@@ -128,12 +126,6 @@ function Hero() {
           <h1 className="hero__title">{profile.name}</h1>
           <p className="hero__tagline">{profile.tagline}</p>
 
-          <div className="hero__contacts">
-            <span><i className="fas fa-map-marker-alt"></i> {profile.location}</span>
-            <span><i className="fas fa-envelope"></i> {profile.email}</span>
-            <span><i className="fas fa-phone"></i> {profile.phone}</span>
-          </div>
-
           <div className="hero__actions">
             <a
               href={profile.resume}
@@ -143,15 +135,6 @@ function Hero() {
             >
               <i className="fas fa-file-download"></i>
               Download Resume
-            </a>
-            <a
-              href="#projects"
-              className="btn btn--outline"
-              data-analytics="nav"
-              data-analytics-label="projects_cta"
-            >
-              <i className="fas fa-folder-open"></i>
-              View Projects
             </a>
             <a
               href={profile.linkedin}
@@ -196,8 +179,6 @@ function QuickProfileCard() {
         <dd>Networking & security</dd>
         <dt>Graduation</dt>
         <dd>{profile.gradDate}</dd>
-        <dt>Location</dt>
-        <dd>{profile.location}</dd>
         <dt>Status</dt>
         <dd className="quick-card__status">{profile.status}</dd>
       </dl>
@@ -233,33 +214,6 @@ function CertCard() {
         ))}
       </ul>
     </div>
-  );
-}
-
-function CertStrip() {
-  return (
-    <section className="cert-strip">
-      <div className="container">
-        <ul className="cert-strip__list">
-          <li>
-            <i className="fab fa-aws"></i>
-            <span>AWS SAA</span>
-          </li>
-          <li>
-            <i className="fab fa-aws"></i>
-            <span>Cloud Practitioner</span>
-          </li>
-          <li>
-            <i className="fas fa-graduation-cap"></i>
-            <span>KPU IT</span>
-          </li>
-          <li>
-            <i className="fas fa-briefcase"></i>
-            <span>Open to Opportunities</span>
-          </li>
-        </ul>
-      </div>
-    </section>
   );
 }
 
@@ -416,7 +370,7 @@ function ContactSection() {
       <div className="container">
         <div className="contact-card">
           <h2>Let's Connect</h2>
-          <p>Interested in network security, cloud infrastructure, or enterprise systems? Let's talk.</p>
+          <p>Open to network and security opportunities — reach out or grab my resume.</p>
 
           <div className="contact-card__actions">
             <a
@@ -437,39 +391,6 @@ function ContactSection() {
               <i className="fas fa-file-download"></i>
               Download Resume
             </a>
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn--secondary"
-              data-analytics="outbound"
-              data-analytics-label="linkedin_contact"
-            >
-              <i className="fab fa-linkedin"></i>
-              LinkedIn
-            </a>
-            <a
-              href={profile.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn--outline"
-              data-analytics="outbound"
-              data-analytics-label="github_contact"
-            >
-              <i className="fab fa-github"></i>
-              GitHub
-            </a>
-            <a
-              href="./old-site/index.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn--outline"
-              data-analytics="outbound"
-              data-analytics-label="legacy_portfolio"
-            >
-              <i className="fas fa-history"></i>
-              Older Portfolio
-            </a>
           </div>
         </div>
       </div>
@@ -485,11 +406,12 @@ function Footer() {
           <p className="footer__brand">
             <strong>LS</strong> · {profile.name}
           </p>
-          <p className="footer__tagline">{profile.role} · {profile.location}</p>
+          <p className="footer__tagline">{profile.location}</p>
 
           <nav className="footer__links">
             <a
               href={`mailto:${profile.email}`}
+              aria-label="Email"
               data-analytics="outbound"
               data-analytics-label="email_footer"
             >
@@ -497,6 +419,7 @@ function Footer() {
             </a>
             <a
               href={`tel:${profile.phone.replace(/-/g, '')}`}
+              aria-label="Phone"
               data-analytics="outbound"
               data-analytics-label="phone_footer"
             >
@@ -506,6 +429,7 @@ function Footer() {
               href={profile.github}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="GitHub"
               data-analytics="outbound"
               data-analytics-label="github_footer"
             >
@@ -515,6 +439,7 @@ function Footer() {
               href={profile.linkedin}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="LinkedIn"
               data-analytics="outbound"
               data-analytics-label="linkedin_footer"
             >
