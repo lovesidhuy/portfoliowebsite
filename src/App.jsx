@@ -423,6 +423,11 @@ function Footer() {
           <p className="footer__copyright">
             © {new Date().getFullYear()} {profile.name} · Built with React
           </p>
+
+          <a href="/old-site/" className="footer__legacy-link">
+            <i className="fas fa-anchor"></i>
+            View older portfolio
+          </a>
         </div>
       </div>
     </footer>
