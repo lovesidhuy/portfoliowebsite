@@ -7,15 +7,19 @@ cd "$ROOT"
 
 npm run build
 
+BUILD_DIR="$ROOT/dist"
+STAGING_DIR="$ROOT/.deploy-staging"
+rm -rf "$STAGING_DIR"
+mkdir -p "$STAGING_DIR"
+cp -R "$BUILD_DIR"/* "$STAGING_DIR"/
+
 # Remove prior deploy artifacts and source-only files from branch root.
 rm -rf assets favicon.ico favicon.svg icons.svg logo192.png logo512.png \
   ls_resume.pdf manifest.json old-site robots.txt wifi_radius_security_report.pdf \
-  index.html src public node_modules dist scripts \
-  package.json package-lock.json vite.config.js
+  index.html src public node_modules scripts \
+  package.json package-lock.json vite.config.js dist
 
-# Promote fresh build to site root.
-cp -R dist/* .
-
-rm -rf dist
+cp -R "$STAGING_DIR"/* .
+rm -rf "$STAGING_DIR"
 
 echo "Deploy bundle ready at $ROOT — commit and push gh-pages."
