@@ -22,16 +22,23 @@ export const formSubmit = {
   redirect: 'https://lovesidhuy.github.io/portfoliowebsite/?request=sent#resume-request',
 };
 
+// FormSubmit collapses plain newlines and shows HTML tags literally — encode breaks on submit.
 export const autoresponseMessage = `Hi, thanks for your interest.
 
-You can view my portfolio here:
+Here are my links:
+
+Portfolio:
 ${siteUrls.portfolio}
 
-You can view or download my resume here:
+Resume:
 ${siteUrls.resume}
 
 Best regards,
 Lovepreet Sidhu`;
+
+export function encodeAutoresponseForFormSubmit(message) {
+  return message.replace(/\r?\n/g, '%0D%0A');
+}
 
 export const certifications = [
   {
