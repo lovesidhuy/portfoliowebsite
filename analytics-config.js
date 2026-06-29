@@ -1,3 +1,1 @@
-window.PORTFOLIO_ANALYTICS = {
-  "site_version": "0.3.11"
-};
+window.__PORTFOLIO_ANALYTICS__ = { site_version: '1.1.0' };
