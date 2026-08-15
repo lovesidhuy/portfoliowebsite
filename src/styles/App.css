@@ -794,6 +794,18 @@
   }
 }
 
+/* Each project is a complete reading unit. The pre-generated utility sheet
+   does not include the intended grid gap, so keep the separation explicit. */
+#projects .project-article + .project-article {
+  margin-top: 4rem;
+}
+
+@media (min-width: 768px) {
+  #projects .project-article + .project-article {
+    margin-top: 7rem;
+  }
+}
+
 /* Legacy portfolio section — comic style; all styles here (static theme.css omits arbitrary colors) */
 .legacy-portfolio {
   background: var(--color-white, #fff);

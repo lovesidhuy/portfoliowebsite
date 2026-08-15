@@ -45,28 +45,16 @@
 
 html {
   scroll-behavior: smooth;
-  /* Keep anchor destinations clear of the floating navigation and make long
-     portfolio pages settle naturally on the next visible content block. */
+  /* Keep anchor destinations clear of the navigation without interrupting
+     normal reading through long project and experimental content. */
   scroll-padding-block-start: 5.5rem;
-  scroll-snap-type: y proximity;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-main > section,
-#contact,
-#projects .project-article,
-#experimental-projects article,
-#skills article,
-#experience details,
-.legacy-portfolio__card {
-  scroll-snap-align: start;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-    scroll-snap-type: none;
   }
 }
 
