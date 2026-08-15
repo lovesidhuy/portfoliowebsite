@@ -4,15 +4,15 @@ const experimentalProjects = [
   {
     id: 1,
     title: 'JobsFarm 🚜',
-    tagline: 'Open-source job discovery & application automation',
+    tagline: 'The job-search automation system I built for my own applications',
     description:
-      'A high-throughput, hands-free job discovery and application automation engine combining browser automation (Playwright/Chrome CDP), anti-detection evasion, an autonomous AI question-answering brain, and automated ATS API scrapers — automating every phase of modern job hunting from discovery to final submission.',
+      'I built JobsFarm because repeating the same job searches, form fields, and screening questions across ten different sites was eating up my time. It helps me go from finding a role to submitting an application: it discovers matching jobs, opens the right application flow, drafts answers from my own QA bank, and keeps a record of what happened.',
     features: [
-      'Multi-Portal & Direct ATS Automation — Indeed, Glassdoor, LinkedIn Easy Apply, Workopolis, Job Bank Canada, Google Jobs, Greenhouse, Ashby, Lever, BambooHR',
-      'Autonomous Multi-Model AI Answering — 7,300+ curated QA bank with Ollama, DeepSeek, OpenAI, Google Gemini, Groq, OpenRouter, AkashML',
-      'Anti-Detection & Evasion Engine — CapSolver/CapMonster CAPTCHA resolution, proxy ladders, NSTbrowser anti-detect profiles',
-      'Dual Deployment — local workstation or multi-node cloud farm on AWS/GCP with Terraform, Packer, and Ansible',
-      'Observability & Telemetry — MongoDB history, Google Sheets/Drive reporting, Telegram real-time alerts',
+      '1. Find the right openings — searches job boards and direct ATS pages, including Indeed, Glassdoor, LinkedIn Easy Apply, Workopolis, Job Bank Canada, Greenhouse, Ashby, Lever, and BambooHR.',
+      '2. Open each application flow — uses Playwright and Chrome CDP when a site needs a real browser, or a direct ATS API scraper when one is available.',
+      '3. Help me answer consistently — checks my 7,300+ curated QA bank first, then routes harder questions through Ollama, DeepSeek, OpenAI, Gemini, Groq, OpenRouter, or AkashML.',
+      '4. Run it where I need it — locally on my workstation or across AWS/GCP nodes, provisioned with Docker, Terraform, Packer, and Ansible.',
+      '5. Tell me what happened — stores application history in MongoDB, sends reports to Google Sheets/Drive, and pushes real-time updates to Telegram.',
     ],
     stack: 'Python | Playwright/Chrome CDP | MongoDB | Docker | Terraform (AWS/GCP) | Packer | Ansible | LLM Gateway',
     url: 'https://github.com/lovesidhuy/jobsfarm',
@@ -38,7 +38,7 @@ function ExperimentalProjects() {
             Experimental Projects
           </h2>
           <p className="mt-3 max-w-[720px] font-normal leading-6 skills-muted">
-            Hands-on builds pushing beyond coursework — automation, AI, and infrastructure at scale.
+            Side projects I build to solve problems I actually run into — automation, AI, and infrastructure in the real world.
           </p>
         </div>
         <div className="grid gap-8">
@@ -53,12 +53,13 @@ function ExperimentalProjects() {
               </h3>
               <p className="experimental-project__tagline mb-3 font-medium leading-6">{project.tagline}</p>
               <p className="experimental-project__description font-normal leading-6">{project.description}</p>
+              <h4 className="experimental-projects__subheading mt-6 text-body-l">How it works</h4>
               <ul className="mt-4 grid gap-2">
                 {project.features.map((feature) => (
                   <li key={feature} className="experimental-project__feature rounded-1 border border-[#44403C] bg-[#292524] p-2 text-body-l">{feature}</li>
                 ))}
               </ul>
-              <p className="experimental-project__stack mt-4 font-normal leading-6">{project.stack}</p>
+              <p className="experimental-project__stack mt-4 font-normal leading-6"><span className="font-medium">What I used:</span> {project.stack}</p>
               <a
                 href={project.url}
                 target="_blank"

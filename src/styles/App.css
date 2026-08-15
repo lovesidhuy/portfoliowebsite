@@ -628,8 +628,13 @@
 /* Experimental projects use the same dark canvas as Skills, but need their
    own scoped text colors because this section is intentionally independent. */
 #experimental-projects h2,
-#experimental-projects h3 {
+#experimental-projects h3,
+#experimental-projects h4 {
   color: #fafaf9;
+}
+
+#experimental-projects .experimental-projects__subheading {
+  letter-spacing: 0.02em;
 }
 
 #experimental-projects .skills-muted,
