@@ -31,9 +31,9 @@ function App() {
       <main id="main-content">
         <Hero />
         <Projects />
+        <ExperimentalProjects />
         <Skills />
         <Experience />
-        <ExperimentalProjects />
         <LegacyPortfolio />
       </main>
       <Footer />

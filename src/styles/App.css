@@ -625,6 +625,32 @@
   color: #fff2c6;
 }
 
+/* Experimental projects use the same dark canvas as Skills, but need their
+   own scoped text colors because this section is intentionally independent. */
+#experimental-projects h2,
+#experimental-projects h3 {
+  color: #fafaf9;
+}
+
+#experimental-projects .skills-muted,
+#experimental-projects .experimental-project__description,
+#experimental-projects .experimental-project__stack {
+  color: #d6d3d1;
+}
+
+#experimental-projects .skills-accent {
+  color: #fff2c6;
+}
+
+#experimental-projects .experimental-project__year {
+  color: #d6d3d1;
+}
+
+#experimental-projects .experimental-project__tagline,
+#experimental-projects .experimental-project__feature {
+  color: #f5f5f4;
+}
+
 /* Hero profile cards (light theme) */
 .hero-icon-box {
   display: flex;
@@ -888,4 +914,3 @@
 .project-card-col--green {
   background-color: #E8F5E9;
 }
-

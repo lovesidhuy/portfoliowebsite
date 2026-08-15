@@ -50,6 +50,9 @@ function Header({ isMenuOpen, setIsMenuOpen, isScrolled }) {
             <a className="flex cursor-pointer items-center" href="#projects" onClick={closeMenu} data-analytics="nav" data-analytics-label="projects">
               <span className="font-qanelas font-medium text-body-l">Projects</span>
             </a>
+            <a className="flex cursor-pointer items-center" href="#experimental-projects" onClick={closeMenu} data-analytics="nav" data-analytics-label="experimental_projects">
+              <span className="font-qanelas font-medium text-body-l">Experiments</span>
+            </a>
             <a className="flex cursor-pointer items-center" href="#skills" onClick={closeMenu} data-analytics="nav" data-analytics-label="skills">
               <span className="font-qanelas font-medium text-body-l">Skills</span>
             </a>
@@ -104,6 +107,7 @@ function Header({ isMenuOpen, setIsMenuOpen, isScrolled }) {
           <nav className="flex flex-col gap-3">
             <a className="text-heading-s font-medium" href="#top" onClick={closeMenu} data-analytics="nav" data-analytics-label="about">About</a>
             <a className="text-heading-s font-medium" href="#projects" onClick={closeMenu} data-analytics="nav" data-analytics-label="projects">Projects</a>
+            <a className="text-heading-s font-medium" href="#experimental-projects" onClick={closeMenu} data-analytics="nav" data-analytics-label="experimental_projects">Experiments</a>
             <a className="text-heading-s font-medium" href="#skills" onClick={closeMenu} data-analytics="nav" data-analytics-label="skills">Skills</a>
             <a className="text-heading-s font-medium" href="#experience" onClick={closeMenu} data-analytics="nav" data-analytics-label="experience">Experience</a>
             <a className="text-heading-s font-medium" href={siteUrls.legacyPortfolio} target="_blank" rel="noopener noreferrer" onClick={closeMenu} data-analytics="outbound" data-analytics-label="legacy_portfolio_mobile_nav">Old portfolio</a>

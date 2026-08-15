@@ -46,19 +46,19 @@ function ExperimentalProjects() {
             <article key={project.id} className="rounded-3 border border-[#44403C] bg-[#1C1917] p-4 md:p-6">
               <div className="mb-2 flex items-center gap-2">
                 <span className="rounded-full bg-[#FFF2C6] px-2 py-1.5 text-body-s font-medium text-[#1C1917]">Open Source</span>
-                <span className="text-body-l text-[#A8A29E]">2026</span>
+                <span className="experimental-project__year text-body-l">2026</span>
               </div>
               <h3 className="mb-2 text-[28px] leading-[40px] text-[#FAFAF9] md:text-[40px] md:leading-[56px]">
                 {project.title}
               </h3>
-              <p className="mb-3 font-medium leading-6 text-[#D6D3D1]">{project.tagline}</p>
-              <p className="font-normal leading-6 text-[#A8A29E]">{project.description}</p>
+              <p className="experimental-project__tagline mb-3 font-medium leading-6">{project.tagline}</p>
+              <p className="experimental-project__description font-normal leading-6">{project.description}</p>
               <ul className="mt-4 grid gap-2">
                 {project.features.map((feature) => (
-                  <li key={feature} className="rounded-1 border border-[#44403C] bg-[#292524] p-2 text-body-l text-[#D6D3D1]">{feature}</li>
+                  <li key={feature} className="experimental-project__feature rounded-1 border border-[#44403C] bg-[#292524] p-2 text-body-l">{feature}</li>
                 ))}
               </ul>
-              <p className="mt-4 font-normal leading-6 text-[#A8A29E]">{project.stack}</p>
+              <p className="experimental-project__stack mt-4 font-normal leading-6">{project.stack}</p>
               <a
                 href={project.url}
                 target="_blank"
