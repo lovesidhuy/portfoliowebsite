@@ -114,7 +114,7 @@ function Projects() {
                       <span className="h-1 w-1 rounded-full bg-[#D7D3D0]"></span>
                     </div>
                     <ul className="grid gap-2">
-                      {project.bullets.map((bullet) => (
+                      {project.bullets.slice(1).map((bullet) => (
                         <li key={bullet} className="rounded-1 border border-[#D7D3D0] bg-[#FAFAF9] p-2 text-body-l text-[#57534E]">{bullet}</li>
                       ))}
                     </ul>
