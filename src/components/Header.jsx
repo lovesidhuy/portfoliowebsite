@@ -1,18 +1,31 @@
 import React from 'react'
+import { siteUrls } from '../data.jsx'
+import { trackMobileNavOpen } from '../analytics/events'
 
 function Header({ isMenuOpen, setIsMenuOpen, isScrolled }) {
   const closeMenu = () => setIsMenuOpen(false)
 
+  const toggleMenu = () => {
+    if (!isMenuOpen) trackMobileNavOpen()
+    setIsMenuOpen((open) => !open)
+  }
+
   return (
     <header id="pb-navbar" className="absolute z-10 flex w-full px-2 pt-2">
       <div className="border-1 mx-auto flex w-max max-w-[1064px] flex-auto justify-between rounded-1.5 border-base/10 bg-base p-1.5 lg:bg-base/40">
-        <a href="#top" className="flex items-center justify-center gap-1" onClick={closeMenu}>
+        <a
+          href="#top"
+          className="flex items-center justify-center gap-1"
+          onClick={closeMenu}
+          data-analytics="nav"
+          data-analytics-label="about"
+        >
           <span className="flex h-5 w-5 items-center justify-center rounded-1 bg-[#1C1917] text-[12px] font-bold text-[#FFF]">LS</span>
           <span className="text-gray-900 text-heading-s font-bold">Lovepreet Sidhu</span>
         </a>
         <button
           className="cursor-pointer whitespace-nowrap rounded-1 px-2 py-1.25 text-body-l font-medium text-gray-900 bg-base hover:bg-[#F5F5F4] text-base-black inline-block h-5 w-5 lg:hidden"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          onClick={toggleMenu}
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
         >
@@ -31,31 +44,44 @@ function Header({ isMenuOpen, setIsMenuOpen, isScrolled }) {
         </button>
         <nav className="mx-8 hidden max-h-full shrink-0 justify-self-center lg:flex">
           <div className="flex flex-wrap-reverse items-center justify-end space-x-2">
-            <a className="flex cursor-pointer items-center" href="#top" onClick={closeMenu}>
+            <a className="flex cursor-pointer items-center" href="#top" onClick={closeMenu} data-analytics="nav" data-analytics-label="about">
               <span className="font-qanelas font-medium text-body-l">About</span>
             </a>
-            <a className="flex cursor-pointer items-center" href="#projects" onClick={closeMenu}>
+            <a className="flex cursor-pointer items-center" href="#projects" onClick={closeMenu} data-analytics="nav" data-analytics-label="projects">
               <span className="font-qanelas font-medium text-body-l">Projects</span>
             </a>
-            <a className="flex cursor-pointer items-center" href="#skills" onClick={closeMenu}>
+            <a className="flex cursor-pointer items-center" href="#skills" onClick={closeMenu} data-analytics="nav" data-analytics-label="skills">
               <span className="font-qanelas font-medium text-body-l">Skills</span>
             </a>
-            <a className="flex cursor-pointer items-center" href="#experience" onClick={closeMenu}>
+            <a className="flex cursor-pointer items-center" href="#experience" onClick={closeMenu} data-analytics="nav" data-analytics-label="experience">
               <span className="font-qanelas font-medium text-body-l">Experience</span>
             </a>
-            <a className="flex cursor-pointer items-center" href="#contact" onClick={closeMenu}>
+            <a className="flex cursor-pointer items-center" href={siteUrls.legacyPortfolio} target="_blank" rel="noopener noreferrer" onClick={closeMenu} data-analytics="outbound" data-analytics-label="legacy_portfolio_nav">
+              <span className="font-qanelas font-medium text-body-l">Old portfolio</span>
+            </a>
+            <a className="flex cursor-pointer items-center" href="#contact" onClick={closeMenu} data-analytics="nav" data-analytics-label="resume_request">
               <span className="font-qanelas font-medium text-body-l">Get links</span>
             </a>
           </div>
         </nav>
         <nav className="hidden items-center space-x-1 lg:flex">
-          <a href="mailto:lovepreet.sidhu3@student.kpu.ca">
-            <button className="cursor-pointer whitespace-nowrap rounded-1 px-2 py-1.25 text-body-l font-medium text-gray-900 bg-base hover:bg-[#F5F5F4]" tabIndex="-1">
+          <a
+            href="mailto:lovepreet.sidhu3@student.kpu.ca"
+            data-analytics="outbound"
+            data-analytics-label="email_header"
+          >
+            <button className="cursor-pointer whitespace-nowrap rounded-1 px-2 py-1.25 text-body-l font-medium text-gray-900 bg-base hover:bg-[#F5F5F4]" tabIndex="-1" type="button">
               Email
             </button>
           </a>
-          <a href="https://lovesidhuy.github.io/portfoliowebsite/ls_resume.pdf" target="_blank" rel="noopener noreferrer">
-            <button className="cursor-pointer whitespace-nowrap rounded-1 px-2 py-1.25 text-body-l font-medium bg-[#1C1917] text-button-primary hover:bg-[#292524]" tabIndex="-1">
+          <a
+            href="https://lovesidhuy.github.io/portfoliowebsite/ls_resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-analytics="resume"
+            data-analytics-location="header"
+          >
+            <button className="cursor-pointer whitespace-nowrap rounded-1 px-2 py-1.25 text-body-l font-medium bg-[#1C1917] text-button-primary hover:bg-[#292524]" tabIndex="-1" type="button">
               Resume
             </button>
           </a>
@@ -76,17 +102,18 @@ function Header({ isMenuOpen, setIsMenuOpen, isScrolled }) {
             </button>
           </div>
           <nav className="flex flex-col gap-3">
-            <a className="text-heading-s font-medium" href="#top" onClick={closeMenu}>About</a>
-            <a className="text-heading-s font-medium" href="#projects" onClick={closeMenu}>Projects</a>
-            <a className="text-heading-s font-medium" href="#skills" onClick={closeMenu}>Skills</a>
-            <a className="text-heading-s font-medium" href="#experience" onClick={closeMenu}>Experience</a>
-            <a className="text-heading-s font-medium" href="#contact" onClick={closeMenu}>Get links</a>
-            <a className="text-heading-s font-medium" href="https://linkedin.com/in/lovepreetssidhu/" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>LinkedIn</a>
-            <a className="text-heading-s font-medium" href="https://github.com/lovesidhuy" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>GitHub</a>
-            <a href="mailto:lovepreet.sidhu3@student.kpu.ca" className="cursor-pointer whitespace-nowrap rounded-1 px-2 py-1.25 text-body-l font-medium text-gray-900 bg-base hover:bg-[#F5F5F4] text-center" onClick={closeMenu}>
+            <a className="text-heading-s font-medium" href="#top" onClick={closeMenu} data-analytics="nav" data-analytics-label="about">About</a>
+            <a className="text-heading-s font-medium" href="#projects" onClick={closeMenu} data-analytics="nav" data-analytics-label="projects">Projects</a>
+            <a className="text-heading-s font-medium" href="#skills" onClick={closeMenu} data-analytics="nav" data-analytics-label="skills">Skills</a>
+            <a className="text-heading-s font-medium" href="#experience" onClick={closeMenu} data-analytics="nav" data-analytics-label="experience">Experience</a>
+            <a className="text-heading-s font-medium" href={siteUrls.legacyPortfolio} target="_blank" rel="noopener noreferrer" onClick={closeMenu} data-analytics="outbound" data-analytics-label="legacy_portfolio_mobile_nav">Old portfolio</a>
+            <a className="text-heading-s font-medium" href="#contact" onClick={closeMenu} data-analytics="nav" data-analytics-label="resume_request">Get links</a>
+            <a className="text-heading-s font-medium" href="https://linkedin.com/in/lovepreetssidhu/" target="_blank" rel="noopener noreferrer" onClick={closeMenu} data-analytics="outbound" data-analytics-label="linkedin_mobile_nav">LinkedIn</a>
+            <a className="text-heading-s font-medium" href="https://github.com/lovesidhuy" target="_blank" rel="noopener noreferrer" onClick={closeMenu} data-analytics="outbound" data-analytics-label="github_mobile_nav">GitHub</a>
+            <a href="mailto:lovepreet.sidhu3@student.kpu.ca" className="cursor-pointer whitespace-nowrap rounded-1 px-2 py-1.25 text-body-l font-medium text-gray-900 bg-base hover:bg-[#F5F5F4] text-center" onClick={closeMenu} data-analytics="outbound" data-analytics-label="email_mobile_nav">
             Email
             </a>
-            <a href="https://lovesidhuy.github.io/portfoliowebsite/ls_resume.pdf" target="_blank" rel="noopener noreferrer" className="cursor-pointer whitespace-nowrap rounded-1 px-2 py-1.25 text-body-l font-medium bg-[#1C1917] text-button-primary hover:bg-[#292524] text-center" onClick={closeMenu}>
+            <a href="https://lovesidhuy.github.io/portfoliowebsite/ls_resume.pdf" target="_blank" rel="noopener noreferrer" className="cursor-pointer whitespace-nowrap rounded-1 px-2 py-1.25 text-body-l font-medium bg-[#1C1917] text-button-primary hover:bg-[#292524] text-center" onClick={closeMenu} data-analytics="resume" data-analytics-location="mobile_nav">
               Resume
             </a>
           </nav>

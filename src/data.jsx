@@ -3,6 +3,7 @@ import React from 'react'
 export const siteUrls = {
   portfolio: 'https://lovesidhuy.github.io/portfoliowebsite/',
   resume: 'https://lovesidhuy.github.io/portfoliowebsite/ls_resume.pdf',
+  legacyPortfolio: 'https://lovesidhuy.github.io/portfoliowebsite/old-site/index.html',
 }
 
 export const formSubmit = {
@@ -20,6 +21,10 @@ ${siteUrls.resume}
 
 Best regards,
 Lovepreet Sidhu`
+
+export function projectAnalyticsLabel(title) {
+  return `project_${title.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '')}`;
+}
 
 export const quickProfile = [
   {
@@ -53,14 +58,17 @@ export const directLinks = [
     label: 'Download Resume',
     href: 'https://lovesidhuy.github.io/portfoliowebsite/ls_resume.pdf',
     primary: true,
+    analytics: { type: 'resume', location: 'hero_direct' },
   },
   {
     label: 'LinkedIn',
     href: 'https://linkedin.com/in/lovepreetssidhu/',
+    analytics: { type: 'outbound', label: 'linkedin_hero' },
   },
   {
     label: 'GitHub',
     href: 'https://github.com/lovesidhuy',
+    analytics: { type: 'outbound', label: 'github_hero' },
   },
 ]
 
@@ -89,31 +97,31 @@ export const skills = [
   {
     id: 1,
     title: 'Networking',
-    tags: ['TCP/IP', 'VLANs', 'OSPF', 'DHCP', 'GRE Tunnels', 'Cisco Packet Tracer', 'Wireless Systems'],
+    tags: ['Cisco IOS', 'VLANs', 'STP/RSTP', 'OSPF', 'EIGRP', 'BGP', 'ACLs', 'NAT', '802.1Q', 'Packet Tracer'],
   },
   {
     id: 2,
-    title: 'Security',
-    tags: ['System Hardening', 'FIM', 'VPN Config', 'Firewall Management', 'OSSEC', 'Network Monitoring'],
+    title: 'Network Security & Identity',
+    tags: ['802.1X', 'WPA3-Enterprise', 'RADIUS/NPS', 'EAP-TLS', 'AD CS', 'Wireshark', 'Nmap'],
   },
   {
     id: 3,
-    title: 'OS & Server',
-    tags: ['Windows 7/10/11', 'Server 2016/2019', 'macOS', 'Linux (Ubuntu, Kali)', 'Active Directory'],
+    title: 'Digital Forensics & Hardening',
+    tags: ['FTK Imager', 'Autopsy', 'Evidence Acquisition', 'Phishing Analysis', 'Endpoint Hardening', 'GPO'],
   },
   {
     id: 4,
-    title: 'Cloud & Tools',
-    tags: ['AWS', 'S3', 'EC2', 'VPC', 'IAM', 'Microsoft 365', 'Remote Desktop', 'Ticketing Systems'],
+    title: 'Cloud & Infrastructure',
+    tags: ['AWS (VPC, EC2, S3, IAM, NAT)', 'Azure VMs', 'Docker', 'Terraform', 'Ansible'],
   },
   {
     id: 5,
-    title: 'Scripting & Development',
-    tags: ['Python', 'Bash', 'SQL', 'MySQL', 'HTML/CSS', 'JavaScript', 'PHP'],
+    title: 'Systems & Scripting',
+    tags: ['Windows Server 2022', 'Active Directory', 'Group Policy', 'Linux (Ubuntu, Kali)', 'Python (Boto3)', 'Bash', 'C++', 'SQL', 'Git', 'ERP (Odoo)'],
   },
   {
     id: 6,
-    title: 'Hardware',
-    tags: ['Desktop/Laptop Troubleshooting', 'System Imaging', 'Peripheral Setup', 'Hardware Diagnostics'],
+    title: 'User Support',
+    tags: ['Windows/macOS/iOS/Android', 'Remote Support', 'Hardware Troubleshooting', 'CRM/Ticketing', 'Device Imaging'],
   },
 ]

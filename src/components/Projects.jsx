@@ -1,36 +1,56 @@
 import React from 'react'
+import { projectAnalyticsLabel } from '../data.jsx'
+
+const cardColors = [
+  'project-card-col--blue',
+  'project-card-col--amber',
+  'project-card-col--yellow',
+  'project-card-col--green',
+]
 
 const projects = [
   {
     id: 1,
-    title: 'STaaS Cloud-Based Smart Drive',
-    date: 'Dec 2025',
-    course: 'Capstone',
+    title: 'Identity Infrastructure & Enterprise Authentication Lab',
+    date: 'Feb 2026',
+    course: 'Wireless Systems',
     featured: true,
-    stack: 'AWS (VPC, EC2, S3, IAM) | Java Spring Boot | Docker | MongoDB',
+    stack: 'Windows Server 2022 | AD | NPS | RADIUS | EAP-TLS | 802.1X | Wireshark | Terraform | Azure | AD CS',
     bullets: [
-      'Architected a secure AWS infrastructure using a VPC with segmented public/private subnets, NAT Gateways, and Bastion hosts.',
-      'Developed a scalable storage platform using Java Spring Boot and AWS S3.',
-      'Implemented automated file classification, secure pre-signed URLs, and storage quotas.',
+      'Deployed password-less WPA3-Enterprise simulation using Windows Server NPS, Azure VMs, Active Directory, and AD Certificate Authority (AD CS).',
+      'Configured 802.1X access control and EAP-TLS mutual authentication to isolate rogue endpoints; analyzed RADIUS handshakes and packet differences with Wireshark and Event ID logs.',
     ],
-    url: 'https://github.com/lovesidhuy/STaaS-Cloud-Based-Smart-Drive/blob/main/README.md',
+    url: 'https://github.com/lovesidhuy/portfoliowebsite/blob/gh-pages/wifi_radius_security_report.pdf',
+    linkLabel: 'View report',
   },
   {
     id: 2,
-    title: 'File Integrity Monitoring Tool',
-    date: 'Mar 2025',
-    course: 'Security',
-    featured: false,
-    stack: 'Java (SHA-256) | WatchService API | OSSEC | Kali Linux',
+    title: 'IoT Smart Patient Monitoring & Alert System',
+    date: 'Apr 2026',
+    course: 'IOT',
+    featured: true,
+    stack: 'Embedded C++ | Arduino | Tinkercad',
     bullets: [
-      'Designed a FIM system utilizing SHA-256 hashing and real-time directory monitoring.',
-      'Deployed and documented OSSEC on a Kali Linux VM.',
-      'Created user guides emphasizing security benefits and regulatory compliance.',
+      'Engineered an embedded edge-computing monitoring prototype in C++, implementing a multi-tier priority state machine to evaluate real-time vital telemetry (temperature, BPM, motion) and trigger automated audio-visual alarms and servo lock mechanisms.',
+      'Integrated I2C LCD diagnostics, alert acknowledgment overrides, and emergency nurse call logic, validating system reliability and edge fail-safes across 9 distinct simulation test scenarios.',
     ],
-    url: 'https://github.com/lovesidhuy/file-integrity-monitoring-tool/blob/main/README.md',
+    url: 'https://github.com/lovesidhuy/Smart-Patient-Control-System',
   },
   {
     id: 3,
+    title: 'STaaS Cloud-Based Smart Drive',
+    date: 'Dec 2025',
+    course: 'Cloud Computing',
+    featured: true,
+    stack: 'AWS (VPC, EC2, S3, IAM) | HTML | CSS | JavaScript | Spring Boot | Docker | MongoDB | Python',
+    bullets: [
+      'Designed and deployed a secure AWS environment with VPC segmentation, NAT gateways, bastion hosts, and least-privilege IAM policies for network isolation and controlled access.',
+      'Automated infrastructure operations using Python (Boto3), improving deployment consistency; containerized services with Docker.',
+    ],
+    url: 'https://github.com/lovesidhuy/STaaS-Cloud-Based-Smart-Drive',
+  },
+  {
+    id: 4,
     title: 'Online Recruitment System',
     date: 'Mar 2025',
     course: 'Full Stack',
@@ -56,14 +76,14 @@ function ArrowRight() {
 
 function Projects() {
   return (
-    <section id="projects" className="bg-base px-4 py-[96px] md:py-[160px]">
+    <section id="projects" className="bg-base px-4 py-[96px] md:py-[160px]" data-analytics-section="projects">
       <div className="mx-auto max-w-[1224px]">
         <h2 className="mb-6 text-center text-heading-l text-[#1C1917] md:mb-[96px] md:text-heading-xxl">
           Portfolio labs with production-shaped constraints
         </h2>
-        <div className="grid gap-8">
+        <div className="grid gap-12 md:gap-20">
           {projects.map((project, index) => (
-            <article key={project.id} className="project-article grid gap-4 md:grid-cols-2 md:items-center">
+            <article key={project.id} className="project-article grid gap-6 md:grid-cols-2 md:items-start">
               <div className="project-text-col">
                 <div className="mb-2 flex items-center gap-2">
                   <span className="rounded-full bg-[#D7D3D0] px-2 py-1.5 text-body-s font-medium text-[#1C1917]">{project.course}</span>
@@ -74,14 +94,21 @@ function Projects() {
                 </h3>
                 <p className="font-normal leading-6 text-[#57534E]">{project.bullets[0]}</p>
                 <p className="mt-3 font-normal leading-6 text-[#57534E]">{project.stack}</p>
-                <a href={project.url} target="_blank" rel="noopener noreferrer" className="group flex max-h-fit w-max items-center whitespace-nowrap rounded-1 border border-[#D7D3D0] bg-[#FAFAF9] p-2 py-1.5 font-medium leading-6 text-[#1C1917] transition hover:bg-[black]/10 mt-4">
-                  View project
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex max-h-fit w-max items-center whitespace-nowrap rounded-1 border border-[#D7D3D0] bg-[#FAFAF9] p-2 py-1.5 font-medium leading-6 text-[#1C1917] transition hover:bg-[black]/10 mt-4"
+                  data-analytics="outbound"
+                  data-analytics-label={projectAnalyticsLabel(project.title)}
+                >
+                  {project.linkLabel ?? 'View project'}
                   <ArrowRight />
                 </a>
               </div>
-              <div className={`project-card-col rounded-3 ${index === 0 ? 'bg-[#EDF3FF]' : index === 1 ? 'bg-[#FFFAEB]' : 'bg-[#FFF2C6]'} p-4`}>
+              <div className={`project-card-col h-full rounded-3 ${cardColors[index % cardColors.length]} p-4`}>
                 <div className="project-preview-card-inner">
-                  <div>
+                  <div className="min-w-0">
                     <div className="mb-4 flex items-center justify-between">
                       <span className="text-body-l font-medium text-[#1C1917]">{project.course}</span>
                       <span className="h-1 w-1 rounded-full bg-[#D7D3D0]"></span>
@@ -92,7 +119,7 @@ function Projects() {
                       ))}
                     </ul>
                   </div>
-                  <div className="flex items-center justify-between border-t border-[#D7D3D0] pt-3">
+                  <div className="mt-auto flex shrink-0 items-center justify-between border-t border-[#D7D3D0] pt-3">
                     <span className="text-heading-s text-[#1C1917]">{project.title.split(' ')[0]}</span>
                     <span className="text-body-l text-[#79716b]">Lovepreet Sidhu</span>
                   </div>
@@ -107,6 +134,8 @@ function Projects() {
             target="_blank"
             rel="noopener noreferrer"
             className="group flex max-h-fit w-max items-center whitespace-nowrap rounded-1 border border-[#D7D3D0] bg-[#FAFAF9] p-2 py-1.5 font-medium leading-6 text-[#1C1917] transition hover:bg-[black]/10"
+            data-analytics="outbound"
+            data-analytics-label="github_repositories"
           >
             View all GitHub repositories
             <ArrowRight />

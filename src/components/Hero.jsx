@@ -2,8 +2,25 @@ import React, { useEffect, useState } from 'react'
 import { autoresponseMessage, certifications, directLinks, formSubmit, quickProfile, siteUrls } from '../data.jsx'
 import { ArrowUpRight, IconBox } from './shared/Icons'
 
+const HERO_VIDEO_SRC = `${import.meta.env.BASE_URL}hero-gradient.webm`
+
+function canUseHeroVideo() {
+  const ua = navigator.userAgent
+  const isIOS = /iPhone|iPad|iPod/i.test(ua)
+    || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+  const isAndroid = /Android/i.test(ua)
+
+  if (isIOS || isAndroid) return false
+  if (window.matchMedia('(max-width: 767px)').matches) return false
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false
+
+  const probe = document.createElement('video')
+  return probe.canPlayType('video/webm; codecs="vp9"') !== ''
+}
+
 function Hero() {
   const [requestSent, setRequestSent] = useState(false)
+  const [useHeroVideo, setUseHeroVideo] = useState(false)
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -12,28 +29,40 @@ function Hero() {
     }
   }, [])
 
+  useEffect(() => {
+    setUseHeroVideo(canUseHeroVideo())
+  }, [])
+
   return (
-    <section id="top" className="flex w-full flex-col items-center" style={{ position: 'relative' }}>
-      <video
-        className="fixed -z-10 h-full w-full bg-transparent object-cover [&::-webkit-media-controls-play-button]:hidden [&::-webkit-media-controls-start-playback-button]:hidden"
-        aria-hidden="true"
-        autoPlay
-        muted
-        loop
-        playsInline
-        src="https://phantombuster.com/assets28245862992/HeroGradient-DMh3OxPE.webm"
-      />
+    <section id="top" className="flex w-full flex-col items-center" style={{ position: 'relative' }} data-analytics-section="about">
+      <div className="hero-bg" aria-hidden="true" />
+      {useHeroVideo ? (
+        <video
+          className="hero-video"
+          aria-hidden="true"
+          autoPlay
+          muted
+          loop
+          playsInline
+          controls={false}
+          disablePictureInPicture
+          disableRemotePlayback
+          preload="auto"
+          src={HERO_VIDEO_SRC}
+        />
+      ) : null}
       <div className="flex flex-col items-center gap-3 pt-20 md:pt-29">
         <h1 className="text-center text-[40px] leading-[56px] md:text-[80px]">
           <span className="whitespace-nowrap">Lovepreet<wbr /></span>
           <span className="whitespace-nowrap"> Sidhu</span>
         </h1>
         <p className="max-w-[60ch] px-2 text-center text-[20px] font-normal leading-[32px] md:px-[108px]">
-          Network Administration & Security student at KPU building cloud labs,
-          enterprise systems, and practical security tooling.
+          Final-year Network Administration & Security student at KPU. AWS Certified
+          Solutions Architect building secure cloud infrastructure, enterprise routing,
+          wireless authentication, and IoT systems.
         </p>
       </div>
-      <div className="mb-[48px] mt-[48px] w-full md:mb-[72px]" id="contact">
+      <div className="mb-[48px] mt-[48px] w-full md:mb-[72px]" id="contact" data-analytics-section="resume_request">
         <form
           className="flex flex-col items-center justify-center gap-2 px-2 md:flex-row md:px-0"
           action={formSubmit.action}
@@ -64,9 +93,9 @@ function Hero() {
         {requestSent ? (
           <p className="mt-3 px-2 text-center text-body-l text-green-700 font-medium" role="status">
             Thanks — check your inbox for the links. You can also{' '}
-            <a href={siteUrls.portfolio} className="underline hover:text-green-900" target="_blank" rel="noopener noreferrer">view the portfolio</a>
+            <a href={siteUrls.portfolio} className="underline hover:text-green-900" target="_blank" rel="noopener noreferrer" data-analytics="outbound" data-analytics-label="portfolio_success">view the portfolio</a>
             {' '}or{' '}
-            <a href={siteUrls.resume} className="underline hover:text-green-900" target="_blank" rel="noopener noreferrer">open my resume</a>.
+            <a href={siteUrls.resume} className="underline hover:text-green-900" target="_blank" rel="noopener noreferrer" data-analytics="resume" data-analytics-location="form_success">open my resume</a>.
           </p>
         ) : (
           <p className="mt-3 px-2 text-center text-body-l text-[#57534E]">
@@ -107,6 +136,10 @@ function Hero() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={link.primary ? 'hero-link-row hero-link-row--primary' : 'hero-link-row'}
+                  data-analytics={link.analytics.type}
+                  {...(link.analytics.location
+                    ? { 'data-analytics-location': link.analytics.location }
+                    : { 'data-analytics-label': link.analytics.label })}
                 >
                   {link.label}
                   <ArrowUpRight />
@@ -118,7 +151,7 @@ function Hero() {
           <li className="rounded-3 border-2 border-[white] bg-[#F5F5F5] p-3 md:p-4 md:col-span-2 lg:col-span-1">
             <h2 className="mb-3 text-heading-s font-medium">Certifications</h2>
             <div className="grid grid-cols-1 gap-2">
-              {certifications.map((cert) => (
+              {certifications.map((cert, index) => (
                 <article key={cert.title} className="hero-cert-row">
                   <div className="flex min-w-0 items-start gap-2">
                     <IconBox>
@@ -135,6 +168,8 @@ function Hero() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hero-cert-btn"
+                    data-analytics="outbound"
+                    data-analytics-label={`cert_${index}`}
                   >
                     {cert.label}
                     <ArrowUpRight />

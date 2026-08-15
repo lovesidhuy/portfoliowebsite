@@ -173,6 +173,41 @@
 }
 
 /* Hero */
+.hero-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -11;
+  background: var(--gradient-hero);
+  pointer-events: none;
+}
+
+.hero-video {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  background: transparent;
+}
+
+.hero-video::-webkit-media-controls,
+.hero-video::-webkit-media-controls-enclosure,
+.hero-video::-webkit-media-controls-panel,
+.hero-video::-webkit-media-controls-play-button,
+.hero-video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+@media (max-width: 767px) {
+  .hero-video {
+    display: none !important;
+  }
+}
+
 .hero {
   position: relative;
   min-height: 100vh;
@@ -707,19 +742,19 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 1.5rem;
   border-radius: 16px;
   border: 1px solid #D7D3D0;
   background: #FFF;
   padding: 1.5rem;
-  height: 336px;
+  min-height: 336px;
+  height: auto;
   box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
   .project-preview-card-inner {
-    height: auto;
-    min-height: 336px;
-    gap: 1.5rem;
+    min-height: 0;
   }
 }
 
@@ -731,5 +766,126 @@
   .project-article:nth-child(even) .project-card-col {
     order: 1;
   }
+}
+
+/* Legacy portfolio section — comic style; all styles here (static theme.css omits arbitrary colors) */
+.legacy-portfolio {
+  background: var(--color-white, #fff);
+  padding: 5rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .legacy-portfolio {
+    padding: 7rem 1rem;
+  }
+}
+
+.legacy-portfolio__inner {
+  max-width: 1224px;
+  margin: 0 auto;
+}
+
+.legacy-portfolio__card {
+  max-width: 768px;
+  margin: 0 auto;
+  border-radius: 24px;
+  border: 2px solid #1C1917;
+  background: #FFFDF5;
+  padding: 1.5rem;
+  box-shadow: 8px 8px 0 #1C1917;
+}
+
+@media (min-width: 768px) {
+  .legacy-portfolio__card {
+    padding: 2rem;
+  }
+}
+
+.legacy-portfolio__eyebrow {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 500;
+  color: #003399;
+}
+
+.legacy-portfolio__title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1.2;
+  font-weight: 700;
+  color: #1C1917;
+}
+
+.legacy-portfolio__text {
+  margin-top: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #57534E;
+}
+
+.legacy-portfolio__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.legacy-portfolio__tag {
+  border-radius: 8px;
+  border: 1px solid #1C1917;
+  background: #FFD700;
+  padding: 0.375rem 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1C1917;
+}
+
+.legacy-portfolio__link {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding: 0.375rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #1C1917;
+  background: #003399;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+}
+
+.legacy-portfolio__link:hover {
+  background: #002266;
+  color: #fff;
+}
+
+.legacy-portfolio__arrow {
+  margin-left: 0.25rem;
+  width: 10px;
+  height: 10px;
+  transition: transform 0.3s ease;
+}
+
+.legacy-portfolio__link:hover .legacy-portfolio__arrow {
+  transform: translateX(2px) scale(1.05);
+}
+
+/* Project preview card tints (defined here — static theme.css omits new arbitrary colors) */
+.project-card-col--blue {
+  background-color: #EDF3FF;
+}
+.project-card-col--amber {
+  background-color: #FFFAEB;
+}
+.project-card-col--yellow {
+  background-color: #FFF2C6;
+}
+.project-card-col--green {
+  background-color: #E8F5E9;
 }
 
