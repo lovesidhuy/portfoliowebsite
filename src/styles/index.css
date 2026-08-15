@@ -58,6 +58,14 @@ html {
   }
 }
 
+/* Match the more spacious desktop composition users get at 80% browser zoom
+   without reducing the readable mobile and tablet layouts. */
+@media (min-width: 1200px) {
+  body {
+    zoom: 0.8;
+  }
+}
+
 body {
   font-family: var(--font-primary);
   font-size: 16px;
