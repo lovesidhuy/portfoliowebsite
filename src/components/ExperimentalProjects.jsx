@@ -31,10 +31,10 @@ function ArrowRight() {
 function ExperimentalProjects() {
   return (
     <section id="experimental-projects" className="overflow-hidden bg-[#171412] px-2 py-[96px] md:px-5 md:py-[160px] lg:px-8" data-analytics-section="experimental_projects">
-      <div className="mx-auto max-w-[1224px]">
+      <div className="experimental-projects__content mx-auto">
         <div className="mb-6 md:mb-12">
           <p className="mb-2 text-body-l font-medium skills-accent">Featured</p>
-          <h2 className="text-heading-l md:text-heading-xxl">
+          <h2 className="experimental-projects__heading text-heading-l">
             Experimental Projects
           </h2>
           <p className="mt-3 max-w-[720px] font-normal leading-6 skills-muted">
@@ -43,12 +43,12 @@ function ExperimentalProjects() {
         </div>
         <div className="grid gap-8">
           {experimentalProjects.map((project) => (
-            <article key={project.id} className="rounded-3 border border-[#44403C] bg-[#1C1917] p-4 md:p-6">
+            <article key={project.id} className="experimental-projects__card rounded-3 border border-[#44403C] bg-[#1C1917] p-4">
               <div className="mb-2 flex items-center gap-2">
                 <span className="rounded-full bg-[#FFF2C6] px-2 py-1.5 text-body-s font-medium text-[#1C1917]">Open Source</span>
                 <span className="experimental-project__year text-body-l">2026</span>
               </div>
-              <h3 className="mb-2 text-[28px] leading-[40px] text-[#FAFAF9] md:text-[40px] md:leading-[56px]">
+              <h3 className="experimental-projects__title mb-2 text-[28px] leading-[40px] text-[#FAFAF9]">
                 {project.title}
               </h3>
               <p className="experimental-project__tagline mb-3 font-medium leading-6">{project.tagline}</p>
