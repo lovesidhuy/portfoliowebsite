@@ -112,6 +112,7 @@ html {
   line-height: 1.5;
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
+  background-color: transparent !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -132,7 +133,7 @@ body {
   font-size: var(--text-base);
   line-height: 1.6;
   color: var(--color-text-dark);
-  background-color: var(--color-off-white-2);
+  background-color: transparent !important;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

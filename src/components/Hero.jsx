@@ -74,6 +74,7 @@ function Hero() {
           disablePictureInPicture
           disableRemotePlayback
           preload="auto"
+          onError={() => setUseHeroVideo(false)}
           src={HERO_VIDEO_SRC}
         />
       ) : null}
