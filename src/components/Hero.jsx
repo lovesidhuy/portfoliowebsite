@@ -63,6 +63,18 @@ function Hero() {
           Solutions Architect building secure cloud infrastructure, enterprise routing,
           wireless authentication, and IoT systems.
         </p>
+        <a
+          href="#projects"
+          className="scroll-indicator"
+          aria-label="Scroll down to projects"
+          data-analytics="nav"
+          data-analytics-label="scroll_indicator"
+        >
+          <span className="scroll-indicator__mouse">
+            <span className="scroll-indicator__wheel" />
+          </span>
+          <span className="scroll-indicator__text">Scroll to explore</span>
+        </a>
       </div>
       <div className="mb-[48px] mt-[48px] w-full md:mb-[72px]" id="contact" data-analytics-section="resume_request">
         <form

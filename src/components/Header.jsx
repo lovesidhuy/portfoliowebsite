@@ -2,13 +2,24 @@ import React from 'react'
 import { siteUrls } from '../data.jsx'
 import { trackMobileNavOpen } from '../analytics/events'
 
-function Header({ isMenuOpen, setIsMenuOpen, isScrolled }) {
+function Header({ isMenuOpen, setIsMenuOpen, isScrolled, activeSection = 'about' }) {
   const closeMenu = () => setIsMenuOpen(false)
 
   const toggleMenu = () => {
     if (!isMenuOpen) trackMobileNavOpen()
     setIsMenuOpen((open) => !open)
   }
+
+  const navItems = [
+    { id: 'about', label: 'About', href: '#top' },
+    { id: 'projects', label: 'Projects', href: '#projects' },
+    { id: 'experimental_projects', label: 'Experiments', href: '#experimental-projects' },
+    { id: 'skills', label: 'Skills', href: '#skills' },
+    { id: 'experience', label: 'Experience', href: '#experience' },
+    { id: 'resume_request', label: 'Get links', href: '#contact' },
+  ]
+
+  const isActive = (id) => activeSection === id
 
   return (
     <header id="pb-navbar" className="absolute z-10 flex w-full px-2 pt-2">
@@ -44,26 +55,20 @@ function Header({ isMenuOpen, setIsMenuOpen, isScrolled }) {
         </button>
         <nav className="mx-8 hidden max-h-full shrink-0 justify-self-center lg:flex">
           <div className="flex flex-wrap-reverse items-center justify-end space-x-2">
-            <a className="flex cursor-pointer items-center" href="#top" onClick={closeMenu} data-analytics="nav" data-analytics-label="about">
-              <span className="font-qanelas font-medium text-body-l">About</span>
-            </a>
-            <a className="flex cursor-pointer items-center" href="#projects" onClick={closeMenu} data-analytics="nav" data-analytics-label="projects">
-              <span className="font-qanelas font-medium text-body-l">Projects</span>
-            </a>
-            <a className="flex cursor-pointer items-center" href="#experimental-projects" onClick={closeMenu} data-analytics="nav" data-analytics-label="experimental_projects">
-              <span className="font-qanelas font-medium text-body-l">Experiments</span>
-            </a>
-            <a className="flex cursor-pointer items-center" href="#skills" onClick={closeMenu} data-analytics="nav" data-analytics-label="skills">
-              <span className="font-qanelas font-medium text-body-l">Skills</span>
-            </a>
-            <a className="flex cursor-pointer items-center" href="#experience" onClick={closeMenu} data-analytics="nav" data-analytics-label="experience">
-              <span className="font-qanelas font-medium text-body-l">Experience</span>
-            </a>
+            {navItems.map((item) => (
+              <a
+                key={item.id}
+                className={`flex cursor-pointer items-center ${isActive(item.id) ? 'nav-item--active' : ''}`}
+                href={item.href}
+                onClick={closeMenu}
+                data-analytics="nav"
+                data-analytics-label={item.id}
+              >
+                <span className="font-qanelas font-medium text-body-l">{item.label}</span>
+              </a>
+            ))}
             <a className="flex cursor-pointer items-center" href={siteUrls.legacyPortfolio} target="_blank" rel="noopener noreferrer" onClick={closeMenu} data-analytics="outbound" data-analytics-label="legacy_portfolio_nav">
               <span className="font-qanelas font-medium text-body-l">Old portfolio</span>
-            </a>
-            <a className="flex cursor-pointer items-center" href="#contact" onClick={closeMenu} data-analytics="nav" data-analytics-label="resume_request">
-              <span className="font-qanelas font-medium text-body-l">Get links</span>
             </a>
           </div>
         </nav>
@@ -90,14 +95,14 @@ function Header({ isMenuOpen, setIsMenuOpen, isScrolled }) {
           </a>
         </nav>
       </div>
-      <div className={`fixed left-0 top-0 z-50 h-screen w-screen bg-mobile-navbar-overlay text-body-primary lg:hidden ${isMenuOpen ? '' : 'hidden'}`}>
-        <div className="flex h-full w-full flex-col bg-base p-2">
+      <div className={`fixed left-0 top-0 z-50 h-screen w-screen bg-mobile-navbar-overlay lg:hidden ${isMenuOpen ? '' : 'hidden'}`} onClick={closeMenu}>
+        <div className="flex h-full w-full flex-col bg-base p-2" onClick={(e) => e.stopPropagation()}>
           <div className="mb-5 flex items-center justify-between rounded-1.5 border-base/10 bg-base p-1.5">
             <span className="flex items-center justify-center gap-1">
               <span className="flex h-5 w-5 items-center justify-center rounded-1 bg-[#1C1917] text-[12px] font-bold text-[#FFF]">LS</span>
               <span className="text-gray-900 text-heading-s font-bold">Lovepreet Sidhu</span>
             </span>
-            <button className="cursor-pointer whitespace-nowrap rounded-1 px-2 py-1.25 text-body-l font-medium text-gray-900 bg-base hover:bg-[#F5F5F4] h-5 w-5" onClick={() => setIsMenuOpen(false)} aria-label="Close navigation menu">
+            <button className="cursor-pointer whitespace-nowrap rounded-1 px-2 py-1.25 text-body-l font-medium text-gray-900 bg-base hover:bg-[#F5F5F4] h-5 w-5" onClick={closeMenu} aria-label="Close navigation menu">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M18 6 6 18" />
                 <path d="m6 6 12 12" />
@@ -105,13 +110,19 @@ function Header({ isMenuOpen, setIsMenuOpen, isScrolled }) {
             </button>
           </div>
           <nav className="flex flex-col gap-3">
-            <a className="text-heading-s font-medium" href="#top" onClick={closeMenu} data-analytics="nav" data-analytics-label="about">About</a>
-            <a className="text-heading-s font-medium" href="#projects" onClick={closeMenu} data-analytics="nav" data-analytics-label="projects">Projects</a>
-            <a className="text-heading-s font-medium" href="#experimental-projects" onClick={closeMenu} data-analytics="nav" data-analytics-label="experimental_projects">Experiments</a>
-            <a className="text-heading-s font-medium" href="#skills" onClick={closeMenu} data-analytics="nav" data-analytics-label="skills">Skills</a>
-            <a className="text-heading-s font-medium" href="#experience" onClick={closeMenu} data-analytics="nav" data-analytics-label="experience">Experience</a>
+            {navItems.map((item) => (
+              <a
+                key={item.id}
+                className={`text-heading-s font-medium ${isActive(item.id) ? 'nav-item--active-mobile' : ''}`}
+                href={item.href}
+                onClick={closeMenu}
+                data-analytics="nav"
+                data-analytics-label={item.id}
+              >
+                {item.label}
+              </a>
+            ))}
             <a className="text-heading-s font-medium" href={siteUrls.legacyPortfolio} target="_blank" rel="noopener noreferrer" onClick={closeMenu} data-analytics="outbound" data-analytics-label="legacy_portfolio_mobile_nav">Old portfolio</a>
-            <a className="text-heading-s font-medium" href="#contact" onClick={closeMenu} data-analytics="nav" data-analytics-label="resume_request">Get links</a>
             <a className="text-heading-s font-medium" href="https://linkedin.com/in/lovepreetssidhu/" target="_blank" rel="noopener noreferrer" onClick={closeMenu} data-analytics="outbound" data-analytics-label="linkedin_mobile_nav">LinkedIn</a>
             <a className="text-heading-s font-medium" href="https://github.com/lovesidhuy" target="_blank" rel="noopener noreferrer" onClick={closeMenu} data-analytics="outbound" data-analytics-label="github_mobile_nav">GitHub</a>
             <a href="mailto:lovepreet.sidhu3@student.kpu.ca" className="cursor-pointer whitespace-nowrap rounded-1 px-2 py-1.25 text-body-l font-medium text-gray-900 bg-base hover:bg-[#F5F5F4] text-center" onClick={closeMenu} data-analytics="outbound" data-analytics-label="email_mobile_nav">

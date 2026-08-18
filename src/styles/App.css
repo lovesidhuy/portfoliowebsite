@@ -957,3 +957,201 @@
 .project-card-col--green {
   background-color: #E8F5E9;
 }
+
+/* ============================================
+   UX Enhancements
+   ============================================ */
+
+/* Scroll progress bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #6d92ff, #00f0a0);
+  z-index: 1000;
+  transition: width 0.1s ease-out;
+  pointer-events: none;
+}
+
+/* Back to top button */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid rgba(28, 25, 23, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  color: #1c1917;
+  box-shadow: 0 8px 24px rgba(23, 20, 16, 0.12);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.2s ease;
+}
+
+.back-to-top--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  background: #1c1917;
+  color: #ffffff;
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid #6d92ff;
+  outline-offset: 2px;
+}
+
+/* Active nav item highlighting */
+.nav-item--active span {
+  color: #6d92ff;
+  font-weight: 600;
+}
+
+.nav-item--active::after {
+  content: '';
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: #6d92ff;
+  margin-top: 2px;
+}
+
+.nav-item--active-mobile {
+  color: #6d92ff !important;
+  font-weight: 600;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  color: #57534e;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.scroll-indicator:hover {
+  color: #1c1917;
+}
+
+.scroll-indicator__mouse {
+  display: block;
+  width: 24px;
+  height: 38px;
+  border: 2px solid currentColor;
+  border-radius: 12px;
+  position: relative;
+}
+
+.scroll-indicator__wheel {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 8px;
+  border-radius: 2px;
+  background: currentColor;
+  animation: scroll-wheel 2s ease-in-out infinite;
+}
+
+@keyframes scroll-wheel {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  70% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.scroll-indicator__text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Focus-visible styles for keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #6d92ff;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Hover micro-interactions on project cards */
+.project-article .project-card-col {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-article:hover .project-card-col {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(23, 20, 16, 0.1);
+}
+
+/* Hover micro-interactions on hero cards */
+.hero-mini-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-mini-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(23, 20, 16, 0.08);
+}
+
+.hero-link-row {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.15s ease;
+}
+
+.hero-link-row:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(23, 20, 16, 0.08);
+}
+
+/* Section transition smoothness */
+#projects,
+#experimental-projects,
+#skills,
+#experience,
+#legacy-portfolio {
+  scroll-margin-top: 5.5rem;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-indicator__wheel {
+    animation: none;
+  }
+
+  .back-to-top {
+    transition: opacity 0.15s ease;
+  }
+
+  .project-article .project-card-col,
+  .hero-mini-card,
+  .hero-link-row {
+    transition: none;
+  }
+}
