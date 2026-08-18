@@ -1155,3 +1155,90 @@ input:focus-visible,
     transition: none;
   }
 }
+
+/* ============================================
+   Design Polish - Professional Dashboard Cards
+   ============================================ */
+
+/* Skill card dashboard style */
+.skill-card-dashboard {
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-card-dashboard:hover {
+  transform: translateY(-2px);
+  border-color: #57534e;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Section label styling */
+.section__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #79716b;
+  margin-bottom: 0.5rem;
+}
+
+/* Mobile-first improvements */
+@media (max-width: 640px) {
+  .hero-form-fieldset {
+    height: 52px;
+  }
+
+  .hero-form-fieldset input {
+    font-size: 16px;
+  }
+
+  .back-to-top {
+    bottom: 1rem;
+    right: 1rem;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* Form disabled state */
+.hero-form-fieldset:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.hero-form-fieldset:disabled input,
+.hero-form-fieldset:disabled button {
+  cursor: not-allowed;
+}
+
+/* Button disabled state */
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Professional card hover states */
+.project-preview-card-inner {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-article:hover .project-preview-card-inner {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(23, 20, 16, 0.08);
+}
+
+/* Consistent section headers */
+#projects .section__label,
+#skills .section__label,
+#experimental-projects .section__label {
+  display: block;
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+#skills .section__label {
+  color: #fff2c6;
+}
+
+#experimental-projects .section__label {
+  color: #fff2c6;
+}

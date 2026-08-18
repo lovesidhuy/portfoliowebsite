@@ -78,9 +78,15 @@ function Projects() {
   return (
     <section id="projects" className="bg-base px-4 py-[96px] md:py-[160px]" data-analytics-section="projects">
       <div className="mx-auto max-w-[1224px]">
-        <h2 className="mb-6 text-center text-heading-l text-[#1C1917] md:mb-[96px] md:text-heading-xxl">
-          Portfolio labs with production-shaped constraints
-        </h2>
+        <div className="mb-6 text-center md:mb-[96px]">
+          <p className="section__label">Portfolio labs</p>
+          <h2 className="mb-3 text-center text-heading-l text-[#1C1917] md:text-heading-xxl">
+            Production-shaped constraints
+          </h2>
+          <p className="mx-auto max-w-[720px] text-center text-body-l text-[#57534E]">
+            Hands-on infrastructure, security, and cloud projects built with real-world constraints.
+          </p>
+        </div>
         <div className="grid gap-12 md:gap-20">
           {projects.map((project, index) => (
             <article key={project.id} className="project-article grid gap-6 md:grid-cols-2 md:items-start">

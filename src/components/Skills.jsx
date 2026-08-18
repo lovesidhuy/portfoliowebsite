@@ -16,7 +16,7 @@ function Skills() {
         </div>
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
           {skills.map((skill) => (
-            <article key={skill.id} className="rounded-2 border border-[#44403C] bg-[#1C1917] p-3">
+            <article key={skill.id} className="rounded-2 border border-[#44403C] bg-[#1C1917] p-3 skill-card-dashboard">
               <h3 className="mb-2 text-heading-s">{skill.title}</h3>
               <div className="flex gap-1" style={{ flexWrap: 'wrap', minWidth: 0 }}>
                 {skill.tags.map((tag) => (

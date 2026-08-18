@@ -22,6 +22,9 @@ function canUseHeroVideo() {
 function Hero() {
   const [requestSent, setRequestSent] = useState(false)
   const [useHeroVideo, setUseHeroVideo] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [formError, setFormError] = useState('')
+  const [emailError, setEmailError] = useState('')
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -34,6 +37,27 @@ function Hero() {
   useEffect(() => {
     setUseHeroVideo(canUseHeroVideo())
   }, [])
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!email) return 'Email is required'
+    if (!emailRegex.test(email)) return 'Please enter a valid email address'
+    return ''
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const form = e.target
+    const email = form.querySelector('input[name="email"]').value
+    const validationError = validateEmail(email)
+    setEmailError(validationError)
+    setFormError('')
+
+    if (validationError) return
+
+    setIsSubmitting(true)
+    form.submit()
+  }
 
   return (
     <section id="top" className="flex w-full flex-col items-center" style={{ position: 'relative' }} data-analytics-section="about">
@@ -53,12 +77,12 @@ function Hero() {
           src={HERO_VIDEO_SRC}
         />
       ) : null}
-      <div className="flex flex-col items-center gap-3 pt-20 md:pt-29">
+      <div className="flex flex-col items-center gap-3 pt-20 md:pt-29 px-4 md:px-0">
         <h1 className="text-center text-[40px] leading-[56px] md:text-[80px]">
           <span className="whitespace-nowrap">Lovepreet<wbr /></span>
           <span className="whitespace-nowrap"> Sidhu</span>
         </h1>
-        <p className="max-w-[60ch] px-2 text-center text-[20px] font-normal leading-[32px] md:px-[108px]">
+        <p className="max-w-[60ch] px-2 text-center text-[18px] md:text-[20px] font-normal leading-[28px] md:leading-[32px]">
           Final-year Network Administration & Security student at KPU. AWS Certified
           Solutions Architect building secure cloud infrastructure, enterprise routing,
           wireless authentication, and IoT systems.
@@ -82,8 +106,10 @@ function Hero() {
           action={formSubmit.action}
           method="POST"
           data-analytics-form="resume_request"
+          onSubmit={handleSubmit}
+          noValidate
         >
-          <fieldset className="hero-form-fieldset">
+          <fieldset className="hero-form-fieldset" disabled={isSubmitting}>
             <input
               name="email"
               type="email"
@@ -92,19 +118,40 @@ function Hero() {
               className="flex-1 border-none bg-transparent px-3 font-normal leading-6 placeholder:font-normal placeholder:text-[#79716B] focus:shadow-none focus:outline-none focus:ring-0"
               placeholder="Enter your email"
               aria-label="Email address"
+              aria-invalid={emailError ? 'true' : 'false'}
+              aria-describedby={emailError ? 'email-error' : undefined}
+              onChange={() => setEmailError('')}
             />
             <input type="hidden" name="_subject" value="New resume request from portfolio" />
             <input type="hidden" name="_next" value={formSubmit.redirect} />
             <input type="hidden" name="_autoresponse" value={autoresponseMessage} />
             <input type="text" name="_honey" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
-            <button type="submit" className="h-[48px] rounded-1 bg-[#1C1917] px-2.5 hover:bg-[#292524] font-medium leading-6 text-[#FFF] hidden md:block whitespace-nowrap">
-              Send me the links
+            <button
+              type="submit"
+              className="h-[48px] rounded-1 bg-[#1C1917] px-2.5 hover:bg-[#292524] font-medium leading-6 text-[#FFF] hidden md:block whitespace-nowrap"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Sending...' : 'Send me the links'}
             </button>
           </fieldset>
-          <button type="submit" className="h-[48px] rounded-1 bg-[#1C1917] px-2.5 hover:bg-[#292524] font-medium leading-6 text-[#FFF] w-full max-w-[600px] md:hidden">
-            Send me the links
+          <button
+            type="submit"
+            className="h-[48px] rounded-1 bg-[#1C1917] px-2.5 hover:bg-[#292524] font-medium leading-6 text-[#FFF] w-full max-w-[600px] md:hidden"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Sending...' : 'Send me the links'}
           </button>
         </form>
+        {emailError && (
+          <p className="mt-2 px-3 text-center text-sm text-[#dc2626]" id="email-error" role="alert">
+            {emailError}
+          </p>
+        )}
+        {formError && (
+          <p className="mt-2 px-3 text-center text-sm text-[#dc2626]" role="alert">
+            {formError}
+          </p>
+        )}
         {requestSent ? (
           <p className="mt-3 px-2 text-center text-body-l text-green-700 font-medium" role="status">
             Thanks — check your inbox for the links. You can also{' '}
