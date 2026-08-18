@@ -10,3 +10,17 @@ export const ANALYTICS_ENABLED =
 export const SCROLL_MARKS = [25, 50, 75, 100];
 
 export const DEDUPE_PREFIX = 'portfolio_analytics_';
+
+export const ENGAGEMENT_TIMEOUT = 30000; // 30s
+
+export const SESSION_TIMEOUT = 30 * 60 * 1000; // 30 min
+
+export const TRACKING_OPTIONS = {
+  anonymize_ip: true,
+  allow_google_signals: false,
+  cookie_flags: 'SameSite=None;Secure',
+  cookie_expires: 63072000, // 2 years
+  linker: {
+    domains: ['lovesidhuy.github.io', 'github.com', 'linkedin.com'],
+  },
+};

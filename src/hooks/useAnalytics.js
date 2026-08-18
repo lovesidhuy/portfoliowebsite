@@ -1,7 +1,13 @@
 import { useEffect } from 'react';
-import { SCROLL_MARKS } from '../analytics/config';
+import { ENGAGEMENT_TIMEOUT, SCROLL_MARKS } from '../analytics/config';
 import { bindAnalyticsDelegation } from '../analytics/delegation';
-import { trackScrollDepth, trackSectionView } from '../analytics/events';
+import {
+  trackEngagementTime,
+  trackError,
+  trackFormSubmit,
+  trackScrollDepth,
+  trackSectionView,
+} from '../analytics/events';
 
 function createScrollHandler() {
   let ticking = false;
@@ -23,6 +29,64 @@ function createScrollHandler() {
       }
       ticking = false;
     });
+  };
+}
+
+function trackEngagement() {
+  const startTime = Date.now();
+  let engaged = false;
+
+  const markEngaged = () => {
+    if (!engaged) {
+      engaged = true;
+      const elapsed = Math.round((Date.now() - startTime) / 1000);
+      if (elapsed >= ENGAGEMENT_TIMEOUT / 1000) {
+        trackEngagementTime(elapsed);
+      }
+    }
+  };
+
+  const events = ['scroll', 'click', 'keydown', 'mousemove', 'touchstart'];
+  events.forEach((event) => window.addEventListener(event, markEngaged, { passive: true, once: true }));
+
+  return () => {
+    events.forEach((event) => window.removeEventListener(event, markEngaged));
+  };
+}
+
+function trackFormSubmissions() {
+  const forms = document.querySelectorAll('form');
+  const handlers = [];
+
+  forms.forEach((form) => {
+    const handler = () => {
+      const formName = form.getAttribute('data-analytics-form') || 'resume_request';
+      trackFormSubmit(formName);
+    };
+    form.addEventListener('submit', handler);
+    handlers.push({ form, handler });
+  });
+
+  return () => {
+    handlers.forEach(({ form, handler }) => form.removeEventListener('submit', handler));
+  };
+}
+
+function trackErrors() {
+  const handleError = (event) => {
+    trackError('window_error', event.message || 'Unknown error');
+  };
+
+  const handleUnhandledRejection = (event) => {
+    trackError('unhandled_rejection', event.reason?.message || 'Unknown rejection');
+  };
+
+  window.addEventListener('error', handleError);
+  window.addEventListener('unhandledrejection', handleUnhandledRejection);
+
+  return () => {
+    window.removeEventListener('error', handleError);
+    window.removeEventListener('unhandledrejection', handleUnhandledRejection);
   };
 }
 
@@ -59,4 +123,10 @@ export function useAnalytics() {
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => trackEngagement(), []);
+
+  useEffect(() => trackFormSubmissions(), []);
+
+  useEffect(() => trackErrors(), []);
 }

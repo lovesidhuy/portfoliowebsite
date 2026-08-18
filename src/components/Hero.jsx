@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { autoresponseMessage, certifications, directLinks, formSubmit, quickProfile, siteUrls } from '../data.jsx'
+import { trackFormSuccess } from '../analytics/events'
 import { ArrowUpRight, IconBox } from './shared/Icons'
 
 const HERO_VIDEO_SRC = `${import.meta.env.BASE_URL}hero-gradient.webm`
@@ -26,6 +27,7 @@ function Hero() {
     const params = new URLSearchParams(window.location.search)
     if (params.get('request') === 'sent') {
       setRequestSent(true)
+      trackFormSuccess('resume_request')
     }
   }, [])
 
@@ -67,6 +69,7 @@ function Hero() {
           className="flex flex-col items-center justify-center gap-2 px-2 md:flex-row md:px-0"
           action={formSubmit.action}
           method="POST"
+          data-analytics-form="resume_request"
         >
           <fieldset className="hero-form-fieldset">
             <input

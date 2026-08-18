@@ -40,3 +40,45 @@ export function trackSectionView(sectionName) {
     { once: `section_${sectionName}` }
   );
 }
+
+export function trackFormSubmit(formName = 'resume_request') {
+  trackEvent('form_submit', {
+    form_name: formName,
+  });
+}
+
+export function trackFormSuccess(formName = 'resume_request') {
+  trackEvent('form_success', {
+    form_name: formName,
+  });
+}
+
+export function trackEngagementTime(seconds) {
+  trackEvent('engagement_time', {
+    engagement_seconds: seconds,
+  });
+}
+
+export function trackError(errorType, errorMessage) {
+  trackEvent('error_occurred', {
+    error_type: errorType,
+    error_message: errorMessage,
+  });
+}
+
+export function trackPageView(pagePath, pageTitle) {
+  trackEvent('page_view', {
+    page_path: pagePath,
+    page_title: pageTitle,
+  });
+}
+
+export function trackCopyEmail() {
+  trackEvent('copy_email', {}, { once: 'copy_email' });
+}
+
+export function trackCertView(certIndex) {
+  trackEvent('cert_view', {
+    cert_index: certIndex,
+  });
+}

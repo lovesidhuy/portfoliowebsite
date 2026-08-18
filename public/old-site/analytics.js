@@ -1,6 +1,7 @@
 (function () {
   var DEDUPE_PREFIX = 'portfolio_analytics_';
   var SCROLL_MARKS = [25, 50, 75, 100];
+  var ENGAGEMENT_TIMEOUT = 30000;
   var config = window.PORTFOLIO_ANALYTICS || { site_version: 'unknown' };
 
   var isProd =
@@ -57,6 +58,21 @@
     track('section_view', { section_name: name }, 'section_' + name);
   }
 
+  function trackFormSubmit(formName) {
+    track('form_submit', { form_name: formName || 'unknown' });
+  }
+
+  function trackEngagementTime(seconds) {
+    track('engagement_time', { engagement_seconds: seconds });
+  }
+
+  function trackError(errorType, errorMessage) {
+    track('error_occurred', {
+      error_type: errorType,
+      error_message: errorMessage
+    });
+  }
+
   function handleClick(event) {
     var element = event.target.closest('[data-analytics]');
     if (!element) return;
@@ -69,6 +85,43 @@
     if (type === 'resume') trackResume(location, href);
     if (type === 'outbound') trackOutbound(label, href);
     if (type === 'nav') trackNav(label);
+  }
+
+  function trackEngagement() {
+    var startTime = Date.now();
+    var engaged = false;
+
+    function markEngaged() {
+      if (engaged) return;
+      engaged = true;
+      var elapsed = Math.round((Date.now() - startTime) / 1000);
+      if (elapsed >= ENGAGEMENT_TIMEOUT / 1000) {
+        trackEngagementTime(elapsed);
+      }
+    }
+
+    var events = ['scroll', 'click', 'keydown', 'mousemove', 'touchstart'];
+    events.forEach(function (eventName) {
+      window.addEventListener(eventName, markEngaged, { passive: true, once: true });
+    });
+  }
+
+  function trackFormSubmissions() {
+    document.querySelectorAll('form').forEach(function (form) {
+      form.addEventListener('submit', function () {
+        var formName = form.getAttribute('data-analytics-form') || 'unknown';
+        trackFormSubmit(formName);
+      });
+    });
+  }
+
+  function trackErrors() {
+    window.addEventListener('error', function (event) {
+      trackError('window_error', event.message || 'Unknown error');
+    });
+    window.addEventListener('unhandledrejection', function (event) {
+      trackError('unhandled_rejection', (event.reason && event.reason.message) || 'Unknown rejection');
+    });
   }
 
   document.addEventListener('click', handleClick);
@@ -115,5 +168,9 @@
         observer.observe(section);
       });
     }
+
+    trackEngagement();
+    trackFormSubmissions();
+    trackErrors();
   });
 })();
