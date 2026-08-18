@@ -6,7 +6,22 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-N5FJTNS3SC', { send_page_view: true, allow_google_signals: false });
+      gtag('config', 'G-N5FJTNS3SC', {
+        send_page_view: true,
+        allow_google_signals: false,
+        anonymize_ip: true,
+        cookie_flags: 'SameSite=None;Secure',
+        cookie_expires: 63072000,
+        page_title: document.title,
+        page_location: window.location.href,
+        linker: {
+          domains: ['lovesidhuy.github.io', 'github.com', 'linkedin.com']
+        },
+        user_properties: {
+          site_type: 'main_portfolio',
+          site_version: '1.1.1'
+        }
+      });
     </script>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/portfoliowebsite/favicon.svg" />
@@ -27,7 +42,7 @@
     />
     <meta property="og:type" content="website" />
     <title>Lovepreet Sidhu | Network & Security Portfolio</title>
-    <script type="module" crossorigin src="/portfoliowebsite/assets/index-g4EzRRC6.js"></script>
+    <script type="module" crossorigin src="/portfoliowebsite/assets/index-Bsvd0Ktl.js"></script>
     <link rel="stylesheet" crossorigin href="/portfoliowebsite/assets/index-dPlrEk94.css">
   </head>
   <body>
