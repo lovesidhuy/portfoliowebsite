@@ -13,7 +13,6 @@ function Header({ isMenuOpen, setIsMenuOpen, isScrolled, activeSection = 'about'
   const navItems = [
     { id: 'about', label: 'About', href: '#top' },
     { id: 'projects', label: 'Projects', href: '#projects' },
-    { id: 'experimental_projects', label: 'Experiments', href: '#experimental-projects' },
     { id: 'skills', label: 'Skills', href: '#skills' },
     { id: 'experience', label: 'Experience', href: '#experience' },
     { id: 'resume_request', label: 'Get links', href: '#contact' },

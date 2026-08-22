@@ -651,63 +651,6 @@
   color: #fff2c6;
 }
 
-/* Experimental projects use the same dark canvas as Skills, but need their
-   own scoped text colors because this section is intentionally independent. */
-#experimental-projects h2,
-#experimental-projects h3,
-#experimental-projects h4 {
-  color: #fafaf9;
-}
-
-#experimental-projects .experimental-projects__subheading {
-  letter-spacing: 0.02em;
-}
-
-#experimental-projects .skills-muted,
-#experimental-projects .experimental-project__description,
-#experimental-projects .experimental-project__stack {
-  color: #d6d3d1;
-}
-
-#experimental-projects .skills-accent {
-  color: #fff2c6;
-}
-
-#experimental-projects .experimental-project__year {
-  color: #d6d3d1;
-}
-
-#experimental-projects .experimental-project__tagline,
-#experimental-projects .experimental-project__feature {
-  color: #f5f5f4;
-}
-
-/* A more compact reading column leaves deliberate dark negative space around
-   experimental work instead of making a single project feel oversized. */
-#experimental-projects .experimental-projects__content {
-  max-width: 1064px;
-}
-
-#experimental-projects .experimental-projects__heading {
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
-  line-height: 1.1;
-}
-
-#experimental-projects .experimental-projects__card {
-  padding: 2rem;
-}
-
-#experimental-projects .experimental-projects__title {
-  font-size: clamp(2rem, 3vw, 2.5rem);
-  line-height: 1.2;
-}
-
-@media (min-width: 768px) {
-  #experimental-projects .experimental-projects__card {
-    padding: 2.5rem;
-  }
-}
-
 /* Hero profile cards (light theme) */
 .hero-icon-box {
   display: flex;
@@ -1158,7 +1101,6 @@ input:focus-visible,
 
 /* Section transition smoothness */
 #projects,
-#experimental-projects,
 #skills,
 #experience,
 #legacy-portfolio {
@@ -1254,17 +1196,12 @@ button:disabled {
 
 /* Consistent section headers */
 #projects .section__label,
-#skills .section__label,
-#experimental-projects .section__label {
+#skills .section__label {
   display: block;
   text-align: center;
   margin-bottom: 0.75rem;
 }
 
 #skills .section__label {
-  color: #fff2c6;
-}
-
-#experimental-projects .section__label {
   color: #fff2c6;
 }

@@ -4,7 +4,6 @@ import Hero from './components/Hero'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
 import Experience from './components/Experience'
-import ExperimentalProjects from './components/ExperimentalProjects'
 import LegacyPortfolio from './components/LegacyPortfolio'
 import Footer from './components/Footer'
 import { useAnalytics } from './hooks/useAnalytics'
@@ -100,7 +99,6 @@ function App() {
       <main id="main-content" ref={mainRef}>
         <Hero />
         <Projects />
-        <ExperimentalProjects />
         <Skills />
         <Experience />
         <LegacyPortfolio />
