@@ -84,9 +84,11 @@ function Hero() {
           <span className="whitespace-nowrap"> Sidhu</span>
         </h1>
         <p className="max-w-[60ch] px-2 text-center text-[18px] md:text-[20px] font-normal leading-[28px] md:leading-[32px]">
-          Final-year Network Administration & Security student at KPU. AWS Certified
-          Solutions Architect building secure cloud infrastructure, enterprise routing,
-          wireless authentication, and IoT systems.
+          AWS Certified Solutions Architect – Associate building secure cloud
+          infrastructure, enterprise networking, wireless authentication, and digital
+          forensics — with 3+ years of customer-facing troubleshooting experience. Seeking
+          entry-level Network Administration, Cloud Infrastructure, or IT Support roles
+          starting January 2027.
         </p>
         <a
           href="#projects"

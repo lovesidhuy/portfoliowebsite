@@ -11,7 +11,7 @@ const cardColors = [
 const projects = [
   {
     id: 1,
-    title: 'Identity Infrastructure & Enterprise Authentication Lab',
+    title: '802.1X / EAP-TLS Authentication Lab',
     date: 'Feb 2026',
     course: 'Wireless Systems',
     featured: true,
