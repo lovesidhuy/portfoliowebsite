@@ -14,7 +14,7 @@ function Header({ isMenuOpen, setIsMenuOpen, isScrolled, activeSection = 'about'
     { id: 'about', label: 'About', href: '#top' },
     { id: 'projects', label: 'Projects', href: '#projects' },
     { id: 'skills', label: 'Skills', href: '#skills' },
-    { id: 'experience', label: 'Experience', href: '#experience' },
+    { id: 'experience', label: 'Education', href: '#experience' },
     { id: 'resume_request', label: 'Get links', href: '#contact' },
   ]
 

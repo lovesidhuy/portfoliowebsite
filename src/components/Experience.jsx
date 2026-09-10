@@ -3,9 +3,9 @@ import React from 'react'
 const volunteer = [
   {
     id: 1,
-    title: 'Support Volunteer',
-    company: 'Cystic Fibrosis Canada',
-    period: 'May 2025',
+    title: 'Event Support Volunteer',
+    company: 'Cystic Fibrosis Canada Foundation',
+    period: 'May 2025 · Burnaby, BC',
     bullets: ['Supported logistics coordination and participant assistance at fundraising events.'],
   },
 ]
@@ -15,7 +15,7 @@ function Experience() {
     <section id="experience" className="lg-px-0 bg-base px-2 py-20" data-analytics-section="experience">
       <section>
         <h2 className="font-aeonik font-normal text-rebranding-h2-mobile lg:text-rebranding-h2 text-center text-heading-primary">
-          Experience, education, and proof points
+          Education, certifications, and proof points
         </h2>
         <div className="mt-2 md:mt-8">
           <div className="grid grid-cols-1 justify-items-center gap-2">

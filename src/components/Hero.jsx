@@ -84,11 +84,12 @@ function Hero() {
           <span className="whitespace-nowrap"> Sidhu</span>
         </h1>
         <p className="max-w-[60ch] px-2 text-center text-[18px] md:text-[20px] font-normal leading-[28px] md:leading-[32px]">
-          AWS Certified Solutions Architect – Associate building secure cloud
-          infrastructure, enterprise networking, wireless authentication, and digital
-          forensics — with 3+ years of customer-facing troubleshooting experience. Seeking
-          entry-level Network Administration, Cloud Infrastructure, or IT Support roles
-          starting January 2027.
+          Final-year BTech IT student focused on Network Administration &amp; Security. AWS
+          Certified Solutions Architect – Associate with academic and project experience in
+          cloud infrastructure, networking, wireless authentication, and digital forensics —
+          plus 7+ years of customer-facing and operational experience, including 3+ years
+          troubleshooting consumer technology. Seeking entry-level Network Administration,
+          Cloud Infrastructure, or IT Support roles starting January 2027.
         </p>
         <a
           href="#projects"

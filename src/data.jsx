@@ -109,31 +109,31 @@ export const skills = [
   {
     id: 1,
     title: 'Networking & Security Labs',
-    tags: ['Cisco IOS', 'VLANs', 'STP/RSTP', 'OSPF', 'ACLs', 'NAT', 'Packet Tracer'],
+    tags: ['Cisco IOS', 'VLANs', 'STP/RSTP', 'OSPF', 'ACLs', 'NAT', '802.1X', 'RADIUS/NPS', 'EAP-TLS', 'Wireshark', 'Nmap'],
   },
   {
     id: 2,
-    title: 'Network Security & Identity',
-    tags: ['802.1X', 'WPA3-Enterprise', 'RADIUS/NPS', 'EAP-TLS', 'AD CS', 'Wireshark', 'Nmap'],
-  },
-  {
-    id: 3,
-    title: 'Digital Forensics',
-    tags: ['FTK Imager', 'Autopsy', 'Evidence Acquisition', 'Phishing Analysis', 'Endpoint Hardening'],
-  },
-  {
-    id: 4,
     title: 'Cloud & Infrastructure',
     tags: ['AWS (EC2, VPC, S3, IAM)', 'Azure', 'Docker', 'Terraform'],
   },
   {
+    id: 3,
+    title: 'Systems Administration',
+    tags: ['Windows Server', 'Active Directory', 'NPS', 'Group Policy', 'AD CS', 'Linux'],
+  },
+  {
+    id: 4,
+    title: 'Scripting & Tools',
+    tags: ['Python', 'Bash', 'Boto3', 'SQL', 'Git', 'Microsoft 365'],
+  },
+  {
     id: 5,
-    title: 'Systems Administration & Scripting',
-    tags: ['Windows Server', 'Active Directory', 'NPS', 'Group Policy', 'Linux (Ubuntu, Kali)', 'Python (Boto3)', 'Bash', 'C++', 'SQL', 'Git'],
+    title: 'User Support',
+    tags: ['Windows/macOS', 'iOS/Android', 'Remote Support', 'Hardware Troubleshooting', 'Salesforce', 'CRM/POS Systems', 'Device Setup & Imaging'],
   },
   {
     id: 6,
-    title: 'User Support',
-    tags: ['Windows/macOS/iOS/Android', 'Remote Support', 'Hardware Troubleshooting', 'CRM/Ticketing', 'Device Setup & Imaging'],
+    title: 'Professional Strengths',
+    tags: ['Communication', 'Troubleshooting', 'Documentation', 'Training', 'Teamwork', 'Adaptability', 'Time Management'],
   },
 ]
