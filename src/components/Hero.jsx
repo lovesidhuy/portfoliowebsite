@@ -217,7 +217,7 @@ function Hero() {
           <li className="rounded-3 border-2 border-[white] bg-[#F5F5F5] p-3 md:p-4 md:col-span-2 lg:col-span-1">
             <h2 className="mb-3 text-heading-s font-medium">Certifications</h2>
             <div className="grid grid-cols-1 gap-2">
-              {certifications.map((cert, index) => (
+              {certifications.map((cert) => (
                 <article key={cert.title} className="hero-cert-row">
                   <div className="flex min-w-0 items-start gap-2">
                     <IconBox>
@@ -229,17 +229,6 @@ function Hero() {
                       <p className="text-body-l text-[#57534E]">{cert.date}</p>
                     </div>
                   </div>
-                  <a
-                    href={cert.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hero-cert-btn"
-                    data-analytics="outbound"
-                    data-analytics-label={`cert_${index}`}
-                  >
-                    {cert.label}
-                    <ArrowUpRight />
-                  </a>
                 </article>
               ))}
             </div>
