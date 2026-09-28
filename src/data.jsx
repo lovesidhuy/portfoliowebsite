@@ -86,6 +86,13 @@ export const directLinks = [
 
 export const certifications = [
   {
+    title: 'CCNA: Introduction to Networks',
+    date: 'Sep 2026',
+    url: 'https://www.credly.com/badges/279bc273-2735-44ec-a1e6-6a6787dc6c50/linked_in_profile',
+    label: 'View badge',
+    showBadgeLink: true,
+  },
+  {
     title: 'AWS Certified Solutions Architect - Associate',
     date: 'Nov 2024',
     url: 'https://www.credly.com/badges/edc04461-7255-46db-b93b-0772b1b4d496/linked_in_profile',

@@ -745,6 +745,26 @@
   background: #292524;
 }
 
+/* Compact badge link for certifications that carry an issuer badge (e.g. CCNA).
+   Kept subtle so the row stays a quiet list item — underlined text link, no button chrome. */
+.hero-cert-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.125rem;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  color: #1c1917;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
+}
+
+.hero-cert-badge:hover {
+  color: #57534e;
+}
+
 /* Custom layout fixes for Hero Form alignment */
 .hero-form-fieldset {
   display: flex;
