@@ -72,16 +72,6 @@ export const directLinks = [
     primary: true,
     analytics: { type: 'resume', location: 'hero_direct' },
   },
-  {
-    label: 'LinkedIn',
-    href: 'https://linkedin.com/in/lovepreetssidhu/',
-    analytics: { type: 'outbound', label: 'linkedin_hero' },
-  },
-  {
-    label: 'GitHub',
-    href: 'https://github.com/lovesidhuy',
-    analytics: { type: 'outbound', label: 'github_hero' },
-  },
 ]
 
 export const certifications = [
