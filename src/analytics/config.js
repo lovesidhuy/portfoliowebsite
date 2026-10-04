@@ -21,6 +21,6 @@ export const TRACKING_OPTIONS = {
   cookie_flags: 'SameSite=None;Secure',
   cookie_expires: 63072000, // 2 years
   linker: {
-    domains: ['lovesidhuy.github.io', 'github.com', 'linkedin.com'],
+    domains: ['lovesidhuy.github.io', 'github.com'],
   },
 };

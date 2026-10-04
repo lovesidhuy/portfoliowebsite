@@ -134,19 +134,6 @@ function Projects() {
             </article>
           ))}
         </div>
-        <div className="mt-[80px] flex justify-center md:mt-[128px]">
-          <a
-            href="https://github.com/lovesidhuy?tab=repositories"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex max-h-fit w-max items-center whitespace-nowrap rounded-1 border border-[#D7D3D0] bg-[#FAFAF9] p-2 py-1.5 font-medium leading-6 text-[#1C1917] transition hover:bg-[black]/10"
-            data-analytics="outbound"
-            data-analytics-label="github_repositories"
-          >
-            View all GitHub repositories
-            <ArrowRight />
-          </a>
-        </div>
       </div>
     </section>
   )
