@@ -13,6 +13,7 @@ function Header({ isMenuOpen, setIsMenuOpen, isScrolled, activeSection = 'about'
   const navItems = [
     { id: 'about', label: 'About', href: '#top' },
     { id: 'projects', label: 'Projects', href: '#projects' },
+    { id: 'experimental_projects', label: 'Experiments', href: '#experimental-projects' },
     { id: 'skills', label: 'Skills', href: '#skills' },
     { id: 'experience', label: 'Education', href: '#experience' },
     { id: 'resume_request', label: 'Get links', href: '#contact' },
@@ -73,15 +74,6 @@ function Header({ isMenuOpen, setIsMenuOpen, isScrolled, activeSection = 'about'
         </nav>
         <nav className="hidden items-center space-x-1 lg:flex">
           <a
-            href="mailto:lovepreet.sidhu3@student.kpu.ca"
-            data-analytics="outbound"
-            data-analytics-label="email_header"
-          >
-            <button className="cursor-pointer whitespace-nowrap rounded-1 px-2 py-1.25 text-body-l font-medium text-gray-900 bg-base hover:bg-[#F5F5F4]" tabIndex="-1" type="button">
-              Email
-            </button>
-          </a>
-          <a
             href="https://lovesidhuy.github.io/portfoliowebsite/ls_resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
@@ -124,9 +116,6 @@ function Header({ isMenuOpen, setIsMenuOpen, isScrolled, activeSection = 'about'
             <a className="text-heading-s font-medium" href={siteUrls.legacyPortfolio} target="_blank" rel="noopener noreferrer" onClick={closeMenu} data-analytics="outbound" data-analytics-label="legacy_portfolio_mobile_nav">Old portfolio</a>
             <a className="text-heading-s font-medium" href="https://linkedin.com/in/lovepreetssidhu/" target="_blank" rel="noopener noreferrer" onClick={closeMenu} data-analytics="outbound" data-analytics-label="linkedin_mobile_nav">LinkedIn</a>
             <a className="text-heading-s font-medium" href="https://github.com/lovesidhuy" target="_blank" rel="noopener noreferrer" onClick={closeMenu} data-analytics="outbound" data-analytics-label="github_mobile_nav">GitHub</a>
-            <a href="mailto:lovepreet.sidhu3@student.kpu.ca" className="cursor-pointer whitespace-nowrap rounded-1 px-2 py-1.25 text-body-l font-medium text-gray-900 bg-base hover:bg-[#F5F5F4] text-center" onClick={closeMenu} data-analytics="outbound" data-analytics-label="email_mobile_nav">
-            Email
-            </a>
             <a href="https://lovesidhuy.github.io/portfoliowebsite/ls_resume.pdf" target="_blank" rel="noopener noreferrer" className="cursor-pointer whitespace-nowrap rounded-1 px-2 py-1.25 text-body-l font-medium bg-[#1C1917] text-button-primary hover:bg-[#292524] text-center" onClick={closeMenu} data-analytics="resume" data-analytics-location="mobile_nav">
               Resume
             </a>

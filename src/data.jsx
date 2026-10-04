@@ -88,27 +88,18 @@ export const certifications = [
   {
     title: 'CCNA: Introduction to Networks',
     date: 'Sep 2026',
-    url: 'https://www.credly.com/badges/279bc273-2735-44ec-a1e6-6a6787dc6c50/linked_in_profile',
-    label: 'View badge',
-    showBadgeLink: true,
   },
   {
     title: 'AWS Certified Solutions Architect - Associate',
     date: 'Nov 2024',
-    url: 'https://www.credly.com/badges/edc04461-7255-46db-b93b-0772b1b4d496/linked_in_profile',
-    label: 'View cert',
   },
   {
     title: 'AWS Certified Cloud Practitioner',
     date: 'Feb 2024',
-    url: 'https://www.credly.com/badges/dd482bdb-ceb5-453a-a41d-8413b877ee7d/linked_in_profile',
-    label: 'View cert',
   },
   {
     title: 'Codecademy - Command Line Certification',
     date: 'Credential',
-    url: 'https://www.codecademy.com/profiles/py4805662099/certificates/c87ba0541f8be78bc2f4ba1128233f6f',
-    label: 'View credentials',
   },
 ]
 

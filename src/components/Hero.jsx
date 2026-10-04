@@ -227,19 +227,6 @@ function Hero() {
                     <div className="min-w-0">
                       <h3 className="text-body-l font-medium text-[#1C1917]" style={{ overflowWrap: 'anywhere' }}>{cert.title}</h3>
                       <p className="text-body-l text-[#57534E]">{cert.date}</p>
-                      {cert.showBadgeLink && (
-                        <a
-                          className="hero-cert-badge"
-                          href={cert.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          data-analytics="outbound"
-                          data-analytics-label="ccna_badge"
-                        >
-                          {cert.label}
-                          <ArrowUpRight />
-                        </a>
-                      )}
                     </div>
                   </div>
                 </article>
